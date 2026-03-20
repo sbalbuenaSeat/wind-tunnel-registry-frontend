@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import reactLogo from '@assets/react.svg';
+import viteLogo from '@assets/vite.svg';
 import {
   Box,
   Button,
@@ -6,10 +9,7 @@ import {
   Image,
   Text,
   VStack,
-} from "@chakra-ui/react";
-import { useState } from "react";
-import reactLogo from "@/assets/react.svg";
-import viteLogo from "@/assets/vite.svg";
+} from '@chakra-ui/react';
 
 function Home() {
   const [count, setCount] = useState(0);
