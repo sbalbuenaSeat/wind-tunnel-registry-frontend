@@ -1,6 +1,6 @@
-# Wind Tunnel Registry Frontend 🪂
+# Wind Tunnel Logbook 🪂
 
-This project is the frontend for the **Wind Tunnel Registry**, an application designed to track wind tunnel flight time, manage individual and shared sessions, and visualize progress.
+This project is the frontend for the **Wind Tunnel Logbook**, an application designed to track wind tunnel flight time, manage individual and shared sessions, and visualize progress.
 
 ## Features
 
