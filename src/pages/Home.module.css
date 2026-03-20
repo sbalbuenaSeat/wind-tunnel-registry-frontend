@@ -1,0 +1,24 @@
+.homeContainer {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+}
+
+/* biome-ignore lint/correctness/noUnknownPseudoClass: <explanation> */
+:global(.dark) .homeContainer {
+  background: linear-gradient(to bottom right, #111827, #1e3a8a, #111827);
+}
+
+.contentStack {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  text-align: center;
+  align-items: center;
+}
+
+.buttonWrapper {
+  padding-top: 1rem; /* 4 */
+}
