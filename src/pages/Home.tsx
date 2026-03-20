@@ -10,8 +10,8 @@ export const Home = () => {
           Wind Tunnel Registry
         </Heading>
         <Text fontSize="xl" color="fg.muted" maxW="lg">
-          Accede de forma segura para gestionar tus registros de túnel de
-          viento.
+          Track your wind tunnel flight time, add individual sessions, shared
+          sessions and stay updated on your progress.
         </Text>
         <div className={styles.buttonWrapper}>
           <LoginButton />

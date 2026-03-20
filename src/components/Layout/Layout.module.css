@@ -1,32 +1,32 @@
 .layoutContainer {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .nav {
   border-bottom: 1px solid var(--chakra-colors-border);
-  padding: 1rem;
+  padding: 16px;
 }
 
 .navContainer {
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.navFlex {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .navRight {
   display: flex;
-  gap: 1.5rem;
+  gap: 24px;
   align-items: center;
 }
 
 .mainContainer {
   background: linear-gradient(to bottom right, #eff6ff, #f5f3ff, #fdf2f8);
+}
+
+/* biome-ignore lint/correctness/noUnknownPseudoClass: <explanation> */
+:global(.dark) .mainContainer {
+  background: linear-gradient(to bottom right, #111827, #1e3a8a, #111827);
 }

@@ -8,15 +8,13 @@ export const Layout = () => {
     <div className={styles.layoutContainer}>
       <nav className={styles.nav}>
         <div className={styles.navContainer}>
-          <div className={styles.navFlex}>
-            <ChakraLink asChild variant="plain">
-              <RouterLink to="/">
-                <Heading size="md">Wind Tunnel Registry</Heading>
-              </RouterLink>
-            </ChakraLink>
-            <div className={styles.navRight}>
-              <ColorModeButton />
-            </div>
+          <ChakraLink asChild variant="plain">
+            <RouterLink to="/">
+              <Heading size="md">Wind Tunnel Registry</Heading>
+            </RouterLink>
+          </ChakraLink>
+          <div className={styles.navRight}>
+            <ColorModeButton />
           </div>
         </div>
       </nav>
