@@ -1,4 +1,4 @@
-# Wind Tunnel Registry Frontend
+# Wind Tunnel Registry Frontend 🪂
 
 This project is the frontend for the **Wind Tunnel Registry**, an application designed to track wind tunnel flight time, manage individual and shared sessions, and visualize progress.
 
