@@ -7,7 +7,7 @@ export const Home = () => {
     <div className={styles.homeContainer}>
       <div className={styles.contentStack}>
         <Heading as="h1" size="4xl" fontWeight="bold" letterSpacing="tight">
-          Wind Tunnel Logbook 🪂
+          Wind Tunnel Logbook
         </Heading>
         <Text fontSize="xl" color="fg.muted" maxW="lg">
           Track your wind tunnel flight time, add individual sessions, shared
