@@ -10,7 +10,7 @@ export const Layout = () => {
         <div className={styles.navContainer}>
           <ChakraLink asChild variant="plain">
             <RouterLink to="/">
-              <Heading size="md">Wind Tunnel Registry</Heading>
+              <Heading size="md">Wind Tunnel Logbook</Heading>
             </RouterLink>
           </ChakraLink>
           <div className={styles.navRight}>
