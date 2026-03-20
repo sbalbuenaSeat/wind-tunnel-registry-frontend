@@ -1,14 +1,15 @@
-import { render, screen } from "@testing-library/react";
-import { expect, test } from "vitest";
-import { Provider } from "@/components/ui/provider";
-import App from "./App";
+import { render, screen } from '@tests/testing.tsx';
+import { expect, test } from 'vitest';
+import App from './App';
 
-test("render app", () => {
-  render(
-    <Provider>
-      <App />
-    </Provider>,
-  );
-  const title = screen.getByText(/Wind Tunnel Registry/i);
+test('render home page by default', () => {
+  render(<App />);
+  const title = screen.getByText(/Vite \+ React \+ Chakra UI/i);
+  expect(title).toBeInTheDocument();
+});
+
+test('render about page when navigating to /about', () => {
+  render(<App />, { route: '/about' });
+  const title = screen.getByText(/About Wind Tunnel Registry/i);
   expect(title).toBeInTheDocument();
 });

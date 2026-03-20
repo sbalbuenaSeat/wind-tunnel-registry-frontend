@@ -16,19 +16,38 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "style": {
+        "useImportType": {
+          "level": "on",
+          "options": { "style": "inlineType" }
+        }
+      }
     }
   },
   "javascript": {
     "formatter": {
-      "quoteStyle": "double"
+      "quoteStyle": "single"
     }
   },
   "assist": {
     "enabled": true,
     "actions": {
       "source": {
-        "organizeImports": "on"
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              "react",
+              "react-dom/client",
+              "react-router-dom",
+              ":PACKAGE:",
+              ":ALIAS:",
+              ":PATH:",
+              "glob:*.css"
+            ]
+          }
+        }
       }
     }
   }

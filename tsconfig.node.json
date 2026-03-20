@@ -5,6 +5,15 @@
     "moduleResolution": "Bundler",
     "skipLibCheck": true,
     "paths": {
+      "@tests": ["./src/tests"],
+      "@tests/*": ["./src/tests/*"],
+      "@components": ["./src/components"],
+      "@components/*": ["./src/components/*"],
+      "@pages": ["./src/pages"],
+      "@pages/*": ["./src/pages/*"],
+      "@assets": ["./src/assets"],
+      "@assets/*": ["./src/assets/*"],
+      "@": ["./src"],
       "@/*": ["./src/*"]
     }
   },

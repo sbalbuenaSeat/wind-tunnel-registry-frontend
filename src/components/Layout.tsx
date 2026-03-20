@@ -1,12 +1,12 @@
+import { Outlet, Link as RouterLink } from 'react-router-dom';
 import {
   Box,
   Link as ChakraLink,
   Container,
   Flex,
   Heading,
-} from "@chakra-ui/react";
-import { Outlet, Link as RouterLink } from "react-router-dom";
-import { ColorModeButton } from "@/components/ui/color-mode";
+} from '@chakra-ui/react';
+import { ColorModeButton } from '@components/ui/color-mode';
 
 function Layout() {
   return (
