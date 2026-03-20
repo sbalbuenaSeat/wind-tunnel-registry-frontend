@@ -1,5 +1,5 @@
 import { Heading, Text } from '@chakra-ui/react';
-import { LoginButton } from '@components/LoginButton/LoginButton';
+import { LoginButton } from '@components/LoginButton/LoginButton.tsx';
 import styles from './Home.module.css';
 
 export const Home = () => {
