@@ -1,0 +1,19 @@
+.homeContainer {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.contentStack {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  text-align: center;
+  align-items: center;
+}
+
+.buttonWrapper {
+  padding-top: 16px;
+}

@@ -1,0 +1,33 @@
+.layoutContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav {
+  border-bottom: 1px solid var(--chakra-colors-border);
+  padding: 16px;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.navRight {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.mainContainer {
+  background: linear-gradient(to bottom right, #eff6ff, #f5f3ff, #fdf2f8);
+  height: calc(100vh - 69px);
+}
+
+/* biome-ignore lint/correctness/noUnknownPseudoClass: <explanation> */
+:global(.dark) .mainContainer {
+  background: linear-gradient(to bottom right, #111827, #1e3a8a, #111827);
+}
