@@ -28,8 +28,11 @@
       "@components/*": ["./src/components/*"],
       "@pages": ["./src/pages"],
       "@pages/*": ["./src/pages/*"],
+      "@services": ["./src/services"],
+      "@services/*": ["./src/services/*"],
       "@assets": ["./src/assets"],
       "@assets/*": ["./src/assets/*"],
+      "@App": ["./src/App.tsx"],
       "@": ["./src"],
       "@/*": ["./src/*"]
     }

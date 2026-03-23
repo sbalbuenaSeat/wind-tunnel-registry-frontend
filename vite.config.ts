@@ -11,19 +11,39 @@ export default defineConfig(({ mode }) => {
       API_URL: JSON.stringify(env.VITE_API_URL),
     },
     plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              if (id.includes('react')) return 'vendor-react';
+              if (
+                id.includes('@chakra-ui') ||
+                id.includes('@emotion') ||
+                id.includes('framer-motion')
+              )
+                return 'vendor-ui';
+              return 'vendor';
+            }
+          },
+        },
+      },
+    },
     resolve: {
       alias: {
         '@tests': path.resolve(__dirname, './src/tests'),
         '@components': path.resolve(__dirname, './src/components'),
         '@pages': path.resolve(__dirname, './src/pages'),
+        '@services': path.resolve(__dirname, './src/services'),
         '@assets': path.resolve(__dirname, './src/assets'),
+        '@App': path.resolve(__dirname, './src/App.tsx'),
         '@': path.resolve(__dirname, './src'),
       },
     },
     test: {
       globals: true,
       environment: 'jsdom',
-      setupFiles: './src/tests/test-globals.ts',
+      setupFiles: ['./src/tests/setup.ts', './src/tests/test-globals.ts'],
     },
   };
 });
