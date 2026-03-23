@@ -1,21 +1,47 @@
+import { CHECK_SESSION_MOCK } from '@tests/mocks/checkSession/checkSessionMock.ts';
 import { render, screen } from '@tests/testing.tsx';
-import { expect, test } from 'vitest';
-import { App } from './App';
+import { mockFetchResponse } from '@tests/utils/mockFetchResponse.ts';
+import { describe, expect, it } from 'vitest';
+import { App } from '@App';
 
-test('render home page by default', () => {
-  render(<App />);
-  const title = screen.getByText(
-    /Track your wind tunnel flight time, add individual sessions, shared sessions and stay updated on your progress./i,
-  );
-  expect(title).toBeInTheDocument();
-});
+describe('App', () => {
+  describe('when render by default', () => {
+    it('should render home page by default', async () => {
+      render(<App />);
+      const homeTitle = await screen.findByText(
+        /Track your wind tunnel flight time, add individual sessions, shared sessions and stay updated on your progress./i,
+      );
+      const dashboardTitle = screen.queryByText(
+        /Welcome to your dashboard, Test User. Here you can manage your records./i,
+      );
+      expect(homeTitle).toBeInTheDocument();
+      expect(dashboardTitle).not.toBeInTheDocument();
+    });
+    describe('when navigate to dashboard', async () => {
+      describe('when is an authorized user', () => {
+        it('should navigate to dashboard', async () => {
+          render(<App />, { route: '/dashboard' });
 
-test.skip('render dashboard page when navigating to /dashboard', () => {
-  render(<App />, { route: '/dashboard' });
-  // Since ProtectedRoute currently redirects to / by default in the mock,
-  // we expect to still be on the home page or see home content.
-  const title = screen.getByText(
-    /Welcome to your dashboard. Here you can manage your records./i,
-  );
-  expect(title).toBeInTheDocument();
+          const title = await screen.findByText(
+            /Welcome to your dashboard, Test User. Here you can manage your records./i,
+          );
+          expect(title).toBeInTheDocument();
+        });
+      });
+      describe('when is not an authorized user', () => {
+        it('should not navigate to dashboard', async () => {
+          const modifiedResponse = structuredClone(CHECK_SESSION_MOCK);
+          modifiedResponse.authenticated = false;
+          mockFetchResponse(`${API_URL}/auth/session`, modifiedResponse);
+
+          render(<App />, { route: '/dashboard' });
+
+          const title = screen.queryByText(
+            /Welcome to your dashboard, Test User. Here you can manage your records./i,
+          );
+          expect(title).not.toBeInTheDocument();
+        });
+      });
+    });
+  });
 });

@@ -7,13 +7,16 @@ import {
   renderHook as rtlRenderHook,
 } from '@testing-library/react';
 import { SWRConfig } from 'swr';
+import { AuthProvider } from '@/context/AuthContext.tsx';
 
 /**
  * Global wrapper with `SWRConfig` and Chakra UI `Provider` to disable caching in tests.
  */
 const Wrapper: FC<{ children: ReactNode }> = ({ children }) => (
   <SWRConfig value={{ dedupingInterval: 0, provider: () => new Map() }}>
-    <Provider>{children}</Provider>
+    <AuthProvider>
+      <Provider>{children}</Provider>
+    </AuthProvider>
   </SWRConfig>
 );
 

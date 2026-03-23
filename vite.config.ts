@@ -36,13 +36,14 @@ export default defineConfig(({ mode }) => {
         '@pages': path.resolve(__dirname, './src/pages'),
         '@services': path.resolve(__dirname, './src/services'),
         '@assets': path.resolve(__dirname, './src/assets'),
+        '@App': path.resolve(__dirname, './src/App.tsx'),
         '@': path.resolve(__dirname, './src'),
       },
     },
     test: {
       globals: true,
       environment: 'jsdom',
-      setupFiles: './src/tests/test-globals.ts',
+      setupFiles: ['./src/tests/setup.ts', './src/tests/test-globals.ts'],
     },
   };
 });
