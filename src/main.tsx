@@ -1,6 +1,7 @@
-import { StrictMode } from 'react';
+import { StrictMode, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { Center, Spinner } from '@chakra-ui/react';
 import { Provider } from '@components/ui/provider';
 import { App } from '@/App.tsx';
 import { AuthProvider } from './context/AuthContext';
@@ -11,7 +12,15 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <AuthProvider>
         <Provider>
-          <App />
+          <Suspense
+            fallback={
+              <Center h="100vh">
+                <Spinner size="xl" color="blue.500" />
+              </Center>
+            }
+          >
+            <App />
+          </Suspense>
         </Provider>
       </AuthProvider>
     </BrowserRouter>
