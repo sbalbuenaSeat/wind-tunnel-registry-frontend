@@ -1,10 +1,9 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { Center, Spinner } from '@chakra-ui/react';
-import { useAuth } from '../hooks/useAuth/useAuth.ts';
+import { useCheckSession } from '@/hooks/useCheckSession/useCheckSession.ts';
 
 export const ProtectedRoute = () => {
-  const { isAuthenticated, loading } = useAuth();
-  console.log(isAuthenticated, 'isAuthenticated');
+  const { user, loading } = useCheckSession();
 
   if (loading) {
     return (
@@ -14,5 +13,5 @@ export const ProtectedRoute = () => {
     );
   }
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/" replace />;
+  return user ? <Outlet /> : <Navigate to="/" replace />;
 };
