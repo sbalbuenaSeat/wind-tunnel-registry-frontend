@@ -17,7 +17,7 @@ export const LoginButton = () => {
       boxShadow="sm"
     >
       <Icon as={FcGoogle} boxSize={5} />
-      Continue with google
+      Continue with Google
     </Button>
   );
 };

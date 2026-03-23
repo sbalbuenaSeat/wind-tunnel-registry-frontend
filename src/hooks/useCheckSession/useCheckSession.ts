@@ -16,6 +16,7 @@ export const useCheckSession = () => {
 
   return {
     user,
+    isAuthenticated: !!user,
     loading: isLoading,
   };
 };

@@ -1,8 +1,12 @@
 import { Heading, Text } from '@chakra-ui/react';
+import { DashboardButton } from '@components/DashboardButton/DashboardButton.tsx';
 import { LoginButton } from '@components/LoginButton/LoginButton.tsx';
+import { useAuth } from '@/hooks/useAuth';
 import styles from './Home.module.css';
 
 export const Home = () => {
+  const { isAuthenticated, loading } = useAuth();
+
   return (
     <div className={styles.homeContainer}>
       <div className={styles.contentStack}>
@@ -14,7 +18,8 @@ export const Home = () => {
           sessions and stay updated on your progress.
         </Text>
         <div className={styles.buttonWrapper}>
-          <LoginButton />
+          {!loading &&
+            (isAuthenticated ? <DashboardButton /> : <LoginButton />)}
         </div>
       </div>
     </div>
