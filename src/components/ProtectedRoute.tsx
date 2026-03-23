@@ -12,7 +12,6 @@ export const ProtectedRoute = () => {
       </Center>
     );
   }
-  console.log(isAuthenticated);
 
   return isAuthenticated ? <Outlet /> : <Navigate to="/" replace />;
 };
