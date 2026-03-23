@@ -1,7 +1,13 @@
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
-export const useAuth = () => {
+interface AuthContextType {
+  name: string;
+  isAuthenticated: boolean;
+  loading: boolean;
+}
+
+export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
 
   if (!context) {

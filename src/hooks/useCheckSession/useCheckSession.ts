@@ -1,22 +1,16 @@
 import { checkSession } from '@services/authService/auth.service.ts';
 import useSWR from 'swr';
+import { type CheckSession } from './useCheckSession.types';
 
-interface User {
-  id: string;
-  email: string;
-  name?: string;
-  avatar?: string;
-}
-
-export const useCheckSession = () => {
-  const { data: user, isLoading } = useSWR<User>('user-login', checkSession, {
+export const useCheckSession = (): CheckSession => {
+  const { data: session, isLoading } = useSWR('user-login', checkSession, {
     shouldRetryOnError: false,
     revalidateOnFocus: false,
   });
 
   return {
-    user,
-    isAuthenticated: !!user,
+    name: session?.name ?? '',
+    isAuthenticated: session?.authenticated ?? false,
     loading: isLoading,
   };
 };
