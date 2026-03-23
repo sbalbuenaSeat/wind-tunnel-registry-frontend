@@ -1,13 +1,11 @@
 import { Button, Icon } from '@chakra-ui/react';
+import { loginWithGoogle } from '@services/authService/auth.service';
 import { FcGoogle } from 'react-icons/fc';
-import { useAuth } from '@/hooks/useAuth';
 
 export const LoginButton = () => {
-  useAuth();
-
   return (
     <Button
-      onClick={() => null}
+      onClick={loginWithGoogle}
       bg="white"
       color="gray.700"
       border="1px solid"
