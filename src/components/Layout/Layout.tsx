@@ -1,5 +1,5 @@
 import { Outlet, Link as RouterLink } from 'react-router-dom';
-import { Link as ChakraLink, Heading, Text, Flex } from '@chakra-ui/react';
+import { Link as ChakraLink, Flex, Heading, Text } from '@chakra-ui/react';
 import { ColorModeButton } from '@components/ui/color-mode';
 import { useAuth } from '@/hooks/useAuth';
 import styles from './Layout.module.css';
