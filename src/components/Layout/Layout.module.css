@@ -24,6 +24,7 @@
 
 .mainContainer {
   background: linear-gradient(to bottom right, #eff6ff, #f5f3ff, #fdf2f8);
+  height: calc(100vh - 69px);
 }
 
 /* biome-ignore lint/correctness/noUnknownPseudoClass: <explanation> */
