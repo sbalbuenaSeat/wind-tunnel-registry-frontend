@@ -12,9 +12,7 @@ describe('App', () => {
       const homeTitle = await screen.findByText(
         /Track your wind tunnel flight time, add individual sessions, shared sessions and stay updated on your progress./i,
       );
-      const dashboardTitle = screen.queryByText(
-        /Welcome to your dashboard, Test User. Here you can manage your records./i,
-      );
+      const dashboardTitle = screen.queryByText(/Total/i);
       const dashBoardButton = await screen.findByRole('button', {
         name: /Go to dashboard/i,
       });
@@ -29,10 +27,8 @@ describe('App', () => {
       it('should navigate to dashboard', async () => {
         render(<App />, { route: '/dashboard' });
 
-        const title = await screen.findByText(
-          /Welcome to your dashboard, Test User. Here you can manage your records./i,
-        );
-        expect(title).toBeInTheDocument();
+        const dashboardPage = await screen.findByTestId('dashboard-page');
+        expect(dashboardPage).toBeInTheDocument();
       });
     });
     describe('when is not an authorized user', () => {
@@ -43,10 +39,8 @@ describe('App', () => {
 
         render(<App />, { route: '/dashboard' });
 
-        const title = screen.queryByText(
-          /Welcome to your dashboard, Test User. Here you can manage your records./i,
-        );
-        expect(title).not.toBeInTheDocument();
+        const dashboardPage = screen.queryByTestId('dashboard-page');
+        expect(dashboardPage).not.toBeInTheDocument();
       });
     });
   });
