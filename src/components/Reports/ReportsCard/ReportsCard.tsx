@@ -1,4 +1,3 @@
-import { formatMinutes } from '@services/utils/formatMinutes';
 import { getClassNames } from '@services/utils/getClassNames';
 import styles from './ReportsCard.module.css';
 
@@ -6,12 +5,13 @@ export interface ReportsCardProps {
   label: string;
   value: number;
   type?: 'individual' | 'shared' | 'total';
+  timeParts: { num: string; unit: string }[];
 }
 
 export const ReportsCard = ({
   label,
-  value,
   type = 'total',
+  timeParts,
 }: ReportsCardProps) => {
   const containerClasses = getClassNames({
     [styles.statCard]: true,
@@ -23,18 +23,12 @@ export const ReportsCard = ({
       <div className={styles.label}>{label}</div>
       <div className={styles.valueContainer}>
         <span className={styles.value}>
-          {formatMinutes(value)
-            .split(' ')
-            .map((part, index) => {
-              const unit = part.slice(-1);
-              const num = part.slice(0, -1);
-              return (
-                <span key={`${unit}-${index}`} className={styles.valueGroup}>
-                  <span className={styles.valueNum}>{num}</span>
-                  <span className={styles.unit}>{unit}</span>
-                </span>
-              );
-            })}
+          {timeParts.map((part) => (
+            <span key={part.num} className={styles.valueGroup}>
+              <span className={styles.valueNum}>{part.num}</span>
+              <span className={styles.unit}>{part.unit}</span>
+            </span>
+          ))}
         </span>
       </div>
     </div>

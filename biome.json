@@ -17,12 +17,20 @@
     "enabled": true,
     "rules": {
       "recommended": true,
+      "correctness": {
+        "noUnknownPseudoClass": "off"
+      },
       "style": {
         "useImportType": {
           "level": "on",
           "options": { "style": "inlineType" }
         }
       }
+    }
+  },
+  "css": {
+    "parser": {
+      "cssModules": true
     }
   },
   "javascript": {

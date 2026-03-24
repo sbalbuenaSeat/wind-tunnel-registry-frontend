@@ -1,7 +1,7 @@
-import { Flex, Spinner } from '@chakra-ui/react';
+import { Box, Flex, Spinner, Text } from '@chakra-ui/react';
+import { ReportsCard } from '@components/Reports/ReportsCard/ReportsCard.tsx';
 import { useDashboardContext } from '@hooks/useDashboard/useDashboard';
 import styles from './Reports.module.css';
-import { ReportsCard } from './ReportsCard/ReportsCard';
 
 export const Reports = () => {
   const { reports, isLoading, error } = useDashboardContext();
@@ -16,20 +16,25 @@ export const Reports = () => {
 
   if (error) {
     return (
-      <div className={styles.errorBox}>
-        <div className={styles.errorText}>
+      <Box
+        p={4}
+        border="1px solid"
+        borderColor="red.200"
+        borderRadius="md"
+        w="full"
+        bg="bg.error"
+      >
+        <Text color="red.700">
           Error loading reports. Please try again later.
-        </div>
-      </div>
+        </Text>
+      </Box>
     );
   }
-
-  const cards = reports?.cards ?? [];
 
   return (
     <div className={styles.reportsContainer}>
       <div className={styles.cardsGrid}>
-        {cards.map((card) => (
+        {reports?.cards?.map((card) => (
           <ReportsCard key={card.label} {...card} />
         ))}
       </div>
