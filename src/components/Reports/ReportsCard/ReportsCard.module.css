@@ -13,12 +13,16 @@
 }
 
 .total {
-  background-color: var(--chakra-colors-bg-muted);
+  background-color: var(--chakra-colors-white);
   border-color: var(--chakra-colors-border);
 }
+
+:global(.dark) .total {
+  background-color: var(--chakra-colors-bg-panel);
+}
 .individual {
-  background-color: var(--chakra-colors-blue-50);
-  border-color: var(--chakra-colors-blue-200);
+  background-color: var(--chakra-colors-blue-100);
+  border-color: var(--chakra-colors-blue-300);
 }
 
 :global(.dark) .individual {
@@ -27,8 +31,8 @@
 }
 
 .shared {
-  background-color: var(--chakra-colors-purple-50);
-  border-color: var(--chakra-colors-purple-200);
+  background-color: var(--chakra-colors-purple-100);
+  border-color: var(--chakra-colors-purple-300);
 }
 
 :global(.dark) .shared {
