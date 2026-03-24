@@ -13,6 +13,13 @@
   flex-wrap: wrap;
 }
 
+@media screen and (max-width: 480px) {
+  .cardsGrid {
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+}
+
 .errorBox {
   padding: 16px;
   border: 1px solid var(--chakra-colors-red-200);

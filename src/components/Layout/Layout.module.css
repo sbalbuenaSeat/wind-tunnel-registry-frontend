@@ -28,6 +28,12 @@
   padding: 40px;
 }
 
+@media screen and (max-width: 480px) {
+  .mainContainer {
+    padding: 16px;
+  }
+}
+
 :global(.dark) .mainContainer {
   background: linear-gradient(to bottom right, #111827, #1e3a8a, #111827);
 }
