@@ -7,26 +7,26 @@
   border: 1px solid var(--chakra-colors-border);
 }
 
-.reportsCardTotal {
+.total {
   background-color: var(--chakra-colors-bg-muted);
   border-color: var(--chakra-colors-border);
 }
-.reportsCardIndividual {
+.individual {
   background-color: var(--chakra-colors-blue-50);
   border-color: var(--chakra-colors-blue-200);
 }
 
-:global(.dark) .reportsCardIndividual {
+:global(.dark) .individual {
   background-color: var(--chakra-colors-blue-950);
   border-color: transparent;
 }
 
-.reportsCardShared {
+.shared {
   background-color: var(--chakra-colors-purple-50);
   border-color: var(--chakra-colors-purple-200);
 }
 
-:global(.dark) .reportsCardShared {
+:global(.dark) .shared {
   background-color: var(--chakra-colors-purple-950);
   border-color: transparent;
 }
@@ -38,17 +38,17 @@
   color: var(--chakra-colors-fg);
 }
 
-.reportsCardIndividual .reportsCardLabel {
+.individual .reportsCardLabel {
   color: var(--chakra-colors-blue-800);
 }
-:global(.dark) .reportsCardIndividual .reportsCardLabel {
+:global(.dark) .individual .reportsCardLabel {
   color: var(--chakra-colors-blue-300);
 }
 
-.reportsCardShared .reportsCardLabel {
+.shared .reportsCardLabel {
   color: var(--chakra-colors-purple-800);
 }
-:global(.dark) .reportsCardShared .reportsCardLabel {
+:global(.dark) .shared .reportsCardLabel {
   color: var(--chakra-colors-purple-300);
 }
 
@@ -84,30 +84,30 @@
   color: var(--chakra-colors-fg-muted);
 }
 
-.reportsCardIndividual .reportsCardUnit {
+.individual .reportsCardUnit {
   color: var(--chakra-colors-blue-700);
 }
-:global(.dark) .reportsCardIndividual .reportsCardUnit {
+:global(.dark) .individual .reportsCardUnit {
   color: var(--chakra-colors-blue-400);
 }
 
-.reportsCardShared .reportsCardUnit {
+.shared .reportsCardUnit {
   color: var(--chakra-colors-purple-700);
 }
-:global(.dark) .reportsCardShared .reportsCardUnit {
+:global(.dark) .shared .reportsCardUnit {
   color: var(--chakra-colors-purple-400);
 }
 
-.reportsCardIndividual .reportsCardValue {
+.individual .reportsCardValue {
   color: var(--chakra-colors-blue-900);
 }
-:global(.dark) .reportsCardIndividual .reportsCardValue {
+:global(.dark) .individual .reportsCardValue {
   color: var(--chakra-colors-blue-200);
 }
 
-.reportsCardShared .reportsCardValue {
+.shared .reportsCardValue {
   color: var(--chakra-colors-purple-900);
 }
-:global(.dark) .reportsCardShared .reportsCardValue {
+:global(.dark) .shared .reportsCardValue {
   color: var(--chakra-colors-purple-200);
 }

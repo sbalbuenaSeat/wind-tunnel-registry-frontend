@@ -10,8 +10,7 @@ export const ReportsCard = ({
 }: ReportsCardProps) => {
   const containerClasses = getClassNames({
     [styles.reportsCard]: true,
-    [styles[`reportsCard${type.charAt(0).toUpperCase()}${type.slice(1)}`]]:
-      true,
+    [styles[type]]: true,
   });
 
   return (
