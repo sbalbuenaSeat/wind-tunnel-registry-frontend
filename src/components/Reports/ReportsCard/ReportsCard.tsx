@@ -17,7 +17,6 @@ export const ReportsCard = ({
   return (
     <div className={containerClasses}>
       <div className={styles.reportsCardLabel}>{label}</div>
-
       <div className={styles.reportsCardDescription}>{description}</div>
 
       <div className={styles.reportsCardValueContainer}>
