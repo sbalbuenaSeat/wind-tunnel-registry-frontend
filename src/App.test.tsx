@@ -27,8 +27,8 @@ describe('App', () => {
       it('should navigate to dashboard', async () => {
         render(<App />, { route: '/dashboard' });
 
-        const title = await screen.findByText(/Total/i);
-        expect(title).toBeInTheDocument();
+        const dashboardPage = await screen.findByTestId('dashboard-page');
+        expect(dashboardPage).toBeInTheDocument();
       });
     });
     describe('when is not an authorized user', () => {
@@ -39,10 +39,8 @@ describe('App', () => {
 
         render(<App />, { route: '/dashboard' });
 
-        const title = screen.queryByText(
-          /Welcome to your dashboard, Test User. Here you can manage your records./i,
-        );
-        expect(title).not.toBeInTheDocument();
+        const dashboardPage = screen.queryByTestId('dashboard-page');
+        expect(dashboardPage).not.toBeInTheDocument();
       });
     });
   });
