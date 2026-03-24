@@ -4,49 +4,39 @@ import {
 } from '@services/reportsService/reports.service.types.ts';
 import { formatMinutes } from '@services/utils/formatMinutes';
 
-export const mapMinutesByType = (
-  flightDetails: FlightDetailsByType[],
-): Record<string, number> =>
-  flightDetails.reduce(
-    (acc, detail) => {
-      const type = detail.type.toLowerCase();
-      if (type) {
-        acc[type] = detail.minutes;
-      }
-      return acc;
-    },
-    { individual: 0, shared: 0 } as Record<string, number>,
-  );
+const CARD_CONFIGS: { label: string; type: ReportsCard['type'] }[] = [
+  { label: 'Total', type: 'total' },
+  { label: 'Individual', type: 'individual' },
+  { label: 'Shared', type: 'shared' },
+];
 
-const getTimeParts = (minutes: number) => {
-  return formatMinutes(minutes)
+const getTimeParts = (minutes: number) =>
+  formatMinutes(minutes)
     .split(' ')
     .map((part) => ({
-      num: part.slice(0, -1),
+      value: part.slice(0, -1),
       unit: part.slice(-1),
     }));
-};
 
-export const buildReportsCards = (
+const getMinutesByType = (type: string, flightDetails: FlightDetailsByType[]) =>
+  flightDetails.find((flightDetail) => flightDetail.type.toLowerCase() === type)
+    ?.minutes ?? 0;
+
+export const getMappedReportsData = (
   totalMinutes: number,
-  minutesByType: Record<string, number>,
-): ReportsCard[] => [
-  {
-    label: 'Total',
-    value: totalMinutes,
-    type: 'total',
-    timeParts: getTimeParts(totalMinutes),
-  },
-  {
-    label: 'Individual',
-    value: minutesByType.individual ?? 0,
-    type: 'individual',
-    timeParts: getTimeParts(minutesByType.individual ?? 0),
-  },
-  {
-    label: 'Shared',
-    value: minutesByType.shared ?? 0,
-    type: 'shared',
-    timeParts: getTimeParts(minutesByType.shared ?? 0),
-  },
-];
+  flightDetails: FlightDetailsByType[],
+) => {
+  const minutesByType: Record<string, number> = {};
+
+  const cards = CARD_CONFIGS.map((config) => {
+    const value =
+      config.type === 'total'
+        ? totalMinutes
+        : getMinutesByType(config.type, flightDetails);
+
+    minutesByType[config.type] = value;
+    return { ...config, value, timeParts: getTimeParts(value) };
+  });
+
+  return { cards, minutesByType };
+};

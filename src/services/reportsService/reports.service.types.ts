@@ -12,7 +12,7 @@ export interface ReportsCard {
   label: string;
   value: number;
   type: 'individual' | 'shared' | 'total';
-  timeParts: { num: string; unit: string }[];
+  timeParts: { value: string; unit: string }[];
 }
 
 export type FlightDetailsByType = {

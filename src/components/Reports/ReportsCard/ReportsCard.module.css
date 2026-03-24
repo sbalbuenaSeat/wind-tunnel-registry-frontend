@@ -1,4 +1,4 @@
-.statCard {
+.reportsCard {
   padding: 24px;
   border-radius: 12px;
   min-width: 200px;
@@ -7,60 +7,59 @@
   border: 1px solid var(--chakra-colors-border);
 }
 
-/* Tipos específicos */
-.total {
+.reportsCardTotal {
   background-color: var(--chakra-colors-bg-muted);
   border-color: var(--chakra-colors-border);
 }
-.individual {
+.reportsCardIndividual {
   background-color: var(--chakra-colors-blue-50);
   border-color: var(--chakra-colors-blue-200);
 }
 
-:global(.dark) .individual {
+:global(.dark) .reportsCardIndividual {
   background-color: var(--chakra-colors-blue-950);
   border-color: transparent;
 }
 
-.shared {
+.reportsCardShared {
   background-color: var(--chakra-colors-purple-50);
   border-color: var(--chakra-colors-purple-200);
 }
 
-:global(.dark) .shared {
+:global(.dark) .reportsCardShared {
   background-color: var(--chakra-colors-purple-950);
   border-color: transparent;
 }
 
-.label {
+.reportsCardLabel {
   font-size: 1.125rem; /* lg */
   font-weight: 700; /* bold */
   margin-bottom: 4px;
   color: var(--chakra-colors-fg);
 }
 
-.individual .label {
+.reportsCardIndividual .reportsCardLabel {
   color: var(--chakra-colors-blue-800);
 }
-:global(.dark) .individual .label {
+:global(.dark) .reportsCardIndividual .reportsCardLabel {
   color: var(--chakra-colors-blue-300);
 }
 
-.shared .label {
+.reportsCardShared .reportsCardLabel {
   color: var(--chakra-colors-purple-800);
 }
-:global(.dark) .shared .label {
+:global(.dark) .reportsCardShared .reportsCardLabel {
   color: var(--chakra-colors-purple-300);
 }
 
-.valueContainer {
+.reportsCardValueContainer {
   display: flex;
   align-items: baseline;
-  gap: 8px;
+  gap: 4px;
 }
 
-.value {
-  font-size: 1.875rem; /* 3xl */
+.reportsCardValue {
+  font-size: 1.875rem;
   font-weight: 700;
   color: var(--chakra-colors-fg);
   display: flex;
@@ -68,47 +67,47 @@
   gap: 8px;
 }
 
-.valueGroup {
+.reportsCardValueGroup {
   display: flex;
   align-items: baseline;
   gap: 2px;
 }
 
-.valueNum {
-  font-size: 1.875rem; /* 3xl */
+.reportsCardValueNum {
+  font-size: 1.875rem;
   font-weight: 700;
 }
 
-.unit {
+.reportsCardUnit {
   font-size: 1rem; /* md or base */
   font-weight: 600;
   color: var(--chakra-colors-fg-muted);
 }
 
-.individual .unit {
+.reportsCardIndividual .reportsCardUnit {
   color: var(--chakra-colors-blue-700);
 }
-:global(.dark) .individual .unit {
+:global(.dark) .reportsCardIndividual .reportsCardUnit {
   color: var(--chakra-colors-blue-400);
 }
 
-.shared .unit {
+.reportsCardShared .reportsCardUnit {
   color: var(--chakra-colors-purple-700);
 }
-:global(.dark) .shared .unit {
+:global(.dark) .reportsCardShared .reportsCardUnit {
   color: var(--chakra-colors-purple-400);
 }
 
-.individual .value {
+.reportsCardIndividual .reportsCardValue {
   color: var(--chakra-colors-blue-900);
 }
-:global(.dark) .individual .value {
+:global(.dark) .reportsCardIndividual .reportsCardValue {
   color: var(--chakra-colors-blue-200);
 }
 
-.shared .value {
+.reportsCardShared .reportsCardValue {
   color: var(--chakra-colors-purple-900);
 }
-:global(.dark) .shared .value {
+:global(.dark) .reportsCardShared .reportsCardValue {
   color: var(--chakra-colors-purple-200);
 }

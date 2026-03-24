@@ -1,7 +1,4 @@
-import {
-  buildReportsCards,
-  mapMinutesByType,
-} from '@services/reportsService/utils/reports.utils.ts';
+import { getMappedReportsData } from '@services/reportsService/utils/reports.utils.ts';
 import { apiFetch } from '@services/utils/apiFetch';
 import {
   type FlightDetailsResponse,
@@ -14,12 +11,8 @@ export const getFlightDetails =
       '/reports/total-by-type',
     );
 
-    const minutesByType = mapMinutesByType(response.flightDetails);
-    const cards = buildReportsCards(response.totalMinutes, minutesByType);
-
     return {
       ...response,
-      minutesByType,
-      cards,
+      ...getMappedReportsData(response.totalMinutes, response.flightDetails),
     };
   };

@@ -1,12 +1,7 @@
+import React from 'react';
+import { type ReportsCardProps } from '@components/Reports/ReportsCard/ReportsCard.types.ts';
 import { getClassNames } from '@services/utils/getClassNames';
 import styles from './ReportsCard.module.css';
-
-export interface ReportsCardProps {
-  label: string;
-  value: number;
-  type?: 'individual' | 'shared' | 'total';
-  timeParts: { num: string; unit: string }[];
-}
 
 export const ReportsCard = ({
   label,
@@ -14,22 +9,21 @@ export const ReportsCard = ({
   timeParts,
 }: ReportsCardProps) => {
   const containerClasses = getClassNames({
-    [styles.statCard]: true,
-    [styles[type]]: true,
+    [styles.reportsCard]: true,
+    [styles[`reportsCard${type.charAt(0).toUpperCase()}${type.slice(1)}`]]:
+      true,
   });
 
   return (
     <div className={containerClasses}>
-      <div className={styles.label}>{label}</div>
-      <div className={styles.valueContainer}>
-        <span className={styles.value}>
-          {timeParts.map((part) => (
-            <span key={part.num} className={styles.valueGroup}>
-              <span className={styles.valueNum}>{part.num}</span>
-              <span className={styles.unit}>{part.unit}</span>
-            </span>
-          ))}
-        </span>
+      <div className={styles.reportsCardLabel}>{label}</div>
+      <div className={styles.reportsCardValueContainer}>
+        {timeParts.map((part) => (
+          <React.Fragment key={part.value}>
+            <span className={styles.reportsCardValueNum}>{part.value}</span>
+            <span className={styles.reportsCardUnit}>{part.unit}</span>
+          </React.Fragment>
+        ))}
       </div>
     </div>
   );
