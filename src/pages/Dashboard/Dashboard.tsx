@@ -1,5 +1,5 @@
 import { Box, Heading, Text, VStack } from '@chakra-ui/react';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@hooks/useAuth/useAuth';
 
 export const Dashboard = () => {
   const { name } = useAuth();

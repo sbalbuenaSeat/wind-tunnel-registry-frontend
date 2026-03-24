@@ -37,6 +37,7 @@ export default defineConfig(({ mode }) => {
         '@services': path.resolve(__dirname, './src/services'),
         '@assets': path.resolve(__dirname, './src/assets'),
         '@App': path.resolve(__dirname, './src/App.tsx'),
+        '@hooks': path.resolve(__dirname, './src/hooks.tsx'),
         '@': path.resolve(__dirname, './src'),
       },
     },

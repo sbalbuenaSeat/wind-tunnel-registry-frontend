@@ -32,6 +32,8 @@
       "@services/*": ["./src/services/*"],
       "@assets": ["./src/assets"],
       "@assets/*": ["./src/assets/*"],
+      "@hooks": ["./src/hooks"],
+      "@hooks/*": ["./src/hooks/*"],
       "@App": ["./src/App.tsx"],
       "@": ["./src"],
       "@/*": ["./src/*"]
