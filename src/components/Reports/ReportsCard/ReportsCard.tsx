@@ -5,6 +5,7 @@ import styles from './ReportsCard.module.css';
 
 export const ReportsCard = ({
   label,
+  description,
   type = 'total',
   timeParts,
 }: ReportsCardProps) => {
@@ -16,6 +17,9 @@ export const ReportsCard = ({
   return (
     <div className={containerClasses}>
       <div className={styles.reportsCardLabel}>{label}</div>
+
+      <div className={styles.reportsCardDescription}>{description}</div>
+
       <div className={styles.reportsCardValueContainer}>
         {timeParts.map((part) => (
           <React.Fragment key={part.value}>

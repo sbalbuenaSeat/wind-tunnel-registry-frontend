@@ -2,21 +2,38 @@ import {
   type FlightDetailsByType,
   type ReportsCard,
 } from '@services/reportsService/reports.service.types.ts';
-import { formatMinutes } from '@services/utils/formatMinutes';
 
-const CARD_CONFIGS: { label: string; type: ReportsCard['type'] }[] = [
-  { label: 'Total', type: 'total' },
-  { label: 'Individual', type: 'individual' },
-  { label: 'Shared', type: 'shared' },
+const CARD_CONFIGS: {
+  label: string;
+  type: ReportsCard['type'];
+  description: string;
+}[] = [
+  {
+    label: 'Total',
+    type: 'total',
+    description: 'Total time accumulated in the wind tunnel.',
+  },
+  {
+    label: 'Individual',
+    type: 'individual',
+    description: 'Flights performed autonomously.',
+  },
+  {
+    label: 'Shared',
+    type: 'shared',
+    description: 'Flights performed with other skydivers.',
+  },
 ];
 
-const getTimeParts = (minutes: number) =>
-  formatMinutes(minutes)
-    .split(' ')
-    .map((part) => ({
-      value: part.slice(0, -1),
-      unit: part.slice(-1),
-    }));
+export const getTimeParts = (totalMinutes: number) => {
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+
+  return [
+    ...(hours ? [{ value: hours, unit: 'h' }] : []),
+    ...(minutes || !hours ? [{ value: minutes, unit: 'min' }] : []),
+  ];
+};
 
 const getMinutesByType = (type: string, flightDetails: FlightDetailsByType[]) =>
   flightDetails.find((flightDetail) => flightDetail.type.toLowerCase() === type)

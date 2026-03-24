@@ -10,6 +10,7 @@ export interface MappedFlightDetailsResponse extends FlightDetailsResponse {
 
 export interface ReportsCard {
   label: string;
+  description?: string;
   value: number;
   type: 'individual' | 'shared' | 'total';
   timeParts: { value: string; unit: string }[];
