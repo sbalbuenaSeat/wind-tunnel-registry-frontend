@@ -1,7 +1,7 @@
 import { Heading, Text } from '@chakra-ui/react';
 import { DashboardButton } from '@components/DashboardButton/DashboardButton.tsx';
 import { LoginButton } from '@components/LoginButton/LoginButton.tsx';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@hooks/useAuth/useAuth.ts';
 import styles from './Home.module.css';
 
 export const Home = () => {

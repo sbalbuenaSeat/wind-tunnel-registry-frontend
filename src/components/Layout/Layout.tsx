@@ -1,11 +1,12 @@
 import { Outlet, Link as RouterLink } from 'react-router-dom';
-import { Link as ChakraLink, Flex, Heading, Text } from '@chakra-ui/react';
+import { Link as ChakraLink, Heading } from '@chakra-ui/react';
+import { UserMenu } from '@components/UserMenu/UserMenu.tsx';
 import { ColorModeButton } from '@components/ui/color-mode';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@hooks/useAuth/useAuth.ts';
 import styles from './Layout.module.css';
 
 export const Layout = () => {
-  const { isAuthenticated, name } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   return (
     <div className={styles.layoutContainer}>
@@ -17,14 +18,7 @@ export const Layout = () => {
             </RouterLink>
           </ChakraLink>
           <div className={styles.navRight}>
-            {isAuthenticated && name && (
-              <Flex align="center" gap={2}>
-                <Text fontSize="sm" fontWeight="medium" color="fg.muted">
-                  Hi, {name}
-                </Text>
-              </Flex>
-            )}
-            <ColorModeButton />
+            {isAuthenticated ? <UserMenu /> : <ColorModeButton />}
           </div>
         </div>
       </nav>

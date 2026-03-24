@@ -1,5 +1,5 @@
 import { createContext, type ReactNode } from 'react';
-import { useCheckSession } from '@/hooks/useCheckSession/useCheckSession.ts';
+import { useCheckSession } from '@hooks/useCheckSession/useCheckSession.ts';
 
 interface AuthContextType {
   name: string;

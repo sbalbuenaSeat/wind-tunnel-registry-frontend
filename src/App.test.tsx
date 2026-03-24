@@ -1,3 +1,4 @@
+import { fireEvent } from '@testing-library/react';
 import { CHECK_SESSION_MOCK } from '@tests/mocks/checkSession/checkSessionMock.ts';
 import { render, screen } from '@tests/testing.tsx';
 import { mockFetchResponse } from '@tests/utils/mockFetchResponse.ts';
@@ -14,34 +15,65 @@ describe('App', () => {
       const dashboardTitle = screen.queryByText(
         /Welcome to your dashboard, Test User. Here you can manage your records./i,
       );
+      const dashBoardButton = await screen.findByRole('button', {
+        name: /Go to dashboard/i,
+      });
+
       expect(homeTitle).toBeInTheDocument();
+      expect(dashBoardButton).toBeInTheDocument();
       expect(dashboardTitle).not.toBeInTheDocument();
     });
-    describe('when navigate to dashboard', async () => {
-      describe('when is an authorized user', () => {
-        it('should navigate to dashboard', async () => {
-          render(<App />, { route: '/dashboard' });
+  });
+  describe('when navigate to dashboard', async () => {
+    describe('when is an authorized user', () => {
+      it('should navigate to dashboard', async () => {
+        render(<App />, { route: '/dashboard' });
 
-          const title = await screen.findByText(
-            /Welcome to your dashboard, Test User. Here you can manage your records./i,
-          );
-          expect(title).toBeInTheDocument();
-        });
+        const title = await screen.findByText(
+          /Welcome to your dashboard, Test User. Here you can manage your records./i,
+        );
+        expect(title).toBeInTheDocument();
       });
-      describe('when is not an authorized user', () => {
-        it('should not navigate to dashboard', async () => {
-          const modifiedResponse = structuredClone(CHECK_SESSION_MOCK);
-          modifiedResponse.authenticated = false;
-          mockFetchResponse(`${API_URL}/auth/session`, modifiedResponse);
+    });
+    describe('when is not an authorized user', () => {
+      it('should not navigate to dashboard', async () => {
+        const modifiedResponse = structuredClone(CHECK_SESSION_MOCK);
+        modifiedResponse.authenticated = false;
+        mockFetchResponse(`${API_URL}/auth/session`, modifiedResponse);
 
-          render(<App />, { route: '/dashboard' });
+        render(<App />, { route: '/dashboard' });
 
-          const title = screen.queryByText(
-            /Welcome to your dashboard, Test User. Here you can manage your records./i,
-          );
-          expect(title).not.toBeInTheDocument();
-        });
+        const title = screen.queryByText(
+          /Welcome to your dashboard, Test User. Here you can manage your records./i,
+        );
+        expect(title).not.toBeInTheDocument();
       });
+    });
+  });
+  describe('when login', () => {
+    it('should authenticate user', async () => {
+      const modifiedResponse = structuredClone(CHECK_SESSION_MOCK);
+      modifiedResponse.authenticated = false;
+      mockFetchResponse(`${API_URL}/auth/session`, modifiedResponse, 401);
+      const originalLocation = window.location;
+
+      Object.defineProperty(window, 'location', {
+        configurable: true,
+        value: {
+          ...originalLocation,
+          href: '',
+        },
+      });
+
+      render(<App />);
+
+      const loginButton = await screen.findByRole('button', {
+        name: /Continue with Google/i,
+      });
+
+      fireEvent.click(loginButton);
+
+      expect(window.location.href).toBe(`${API_URL}/auth/google`);
     });
   });
 });

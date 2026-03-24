@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { Center, Spinner } from '@chakra-ui/react';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '@hooks/useAuth/useAuth.ts';
 
 export const ProtectedRoute = () => {
   const { isAuthenticated, loading } = useAuth();
