@@ -8,7 +8,11 @@ export const useLogout = () => {
 
   const { trigger, isMutating, error } = useSWRMutation('auth-logout', logout, {
     onSuccess: async () => {
-      await globalMutate('user-session', null, false);
+      await globalMutate(
+        'user-session',
+        { authenticated: false, name: '' },
+        true,
+      );
       navigate('/');
     },
   });
