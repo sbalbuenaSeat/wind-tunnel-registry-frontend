@@ -13,6 +13,14 @@
   border: 1px solid var(--chakra-colors-border);
 }
 
+@media screen and (max-width: 480px) {
+  .reportsCard {
+    padding: 8px 10px;
+    min-width: 0;
+    gap: 2px;
+  }
+}
+
 .total {
   background-color: var(--chakra-colors-white);
   border-color: var(--chakra-colors-border);
@@ -22,8 +30,8 @@
   background-color: var(--chakra-colors-bg-panel);
 }
 .individual {
-  background-color: var(--chakra-colors-blue-200);
-  border-color: var(--chakra-colors-blue-300);
+  background-color: var(--chakra-colors-white);
+  border-color: var(--chakra-colors-border);
 }
 
 :global(.dark) .individual {
@@ -32,8 +40,8 @@
 }
 
 .shared {
-  background-color: var(--chakra-colors-purple-200);
-  border-color: var(--chakra-colors-purple-300);
+  background-color: var(--chakra-colors-white);
+  border-color: var(--chakra-colors-border);
 }
 
 :global(.dark) .shared {
@@ -49,6 +57,12 @@
   text-transform: uppercase;
 }
 
+@media screen and (max-width: 480px) {
+  .reportsCardLabel {
+    font-size: 14px;
+  }
+}
+
 .reportsCardDescription {
   font-size: 16px;
   font-weight: 400;
@@ -56,15 +70,29 @@
   line-height: 1.3;
 }
 
+@media screen and (max-width: 480px) {
+  .reportsCardDescription {
+    display: none;
+  }
+}
+
+.total .reportsCardDescription {
+  color: var(--chakra-colors-fg-muted);
+}
+
+:global(.dark) .total .reportsCardDescription {
+  color: var(--chakra-colors-fg-subtle);
+}
+
 .individual .reportsCardDescription {
-  color: var(--chakra-colors-blue-600);
+  color: var(--chakra-colors-blue-700);
 }
 :global(.dark) .individual .reportsCardDescription {
   color: var(--chakra-colors-blue-400);
 }
 
 .shared .reportsCardDescription {
-  color: var(--chakra-colors-purple-600);
+  color: var(--chakra-colors-purple-700);
 }
 :global(.dark) .shared .reportsCardDescription {
   color: var(--chakra-colors-purple-400);
@@ -89,6 +117,8 @@
   align-items: baseline;
   justify-content: center;
   gap: 4px;
+  flex-wrap: wrap;
+  max-width: 100%;
 }
 
 .reportsCardValue {
@@ -109,12 +139,71 @@
 .reportsCardValueNum {
   font-size: 36px; /* 2.25rem = 36px */
   font-weight: 800;
+  color: inherit;
+}
+
+@media screen and (max-width: 480px) {
+  .reportsCardValueNum {
+    font-size: 24px;
+  }
+}
+
+.total .reportsCardValueNum {
+  color: var(--chakra-colors-black);
+}
+
+:global(.dark) .total .reportsCardValueNum {
+  color: var(--chakra-colors-fg);
+}
+
+.individual .reportsCardValueNum {
+  color: var(--chakra-colors-blue-600);
+}
+
+:global(.dark) .individual .reportsCardValueNum {
+  color: var(--chakra-colors-blue-300);
+}
+
+.shared .reportsCardValueNum {
+  color: var(--chakra-colors-purple-600);
+}
+
+:global(.dark) .shared .reportsCardValueNum {
+  color: var(--chakra-colors-purple-300);
 }
 
 .reportsCardUnit {
   font-size: 14px; /* 0.875rem = 14px */
   font-weight: 600;
   color: var(--chakra-colors-fg-muted);
+}
+
+.skeletonLabel {
+  height: 24px;
+}
+.skeletonDescription {
+  height: 16px;
+}
+.skeletonValue {
+  height: 36px;
+}
+.skeletonUnit {
+  height: 20px;
+}
+
+@media screen and (max-width: 480px) {
+  .skeletonLabel {
+    height: 14px;
+  }
+  .skeletonDescription {
+    display: none;
+  }
+  .skeletonValue {
+    height: 24px;
+  }
+  .skeletonUnit {
+    height: 14px;
+  }
 }
 
 .individual .reportsCardUnit {

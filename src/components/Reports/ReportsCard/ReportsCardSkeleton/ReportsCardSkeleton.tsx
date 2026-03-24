@@ -4,10 +4,17 @@ import styles from '../ReportsCard.module.css';
 export const ReportsCardSkeleton = () => {
   return (
     <div className={styles.reportsCard}>
-      <Skeleton height="24px" width="60%" mb="4px" />
-      <Stack direction="row" align="baseline" gap="4px">
-        <Skeleton height="36px" width="80px" />
-        <Skeleton height="20px" width="30px" />
+      <Skeleton width="60%" className={styles.skeletonLabel} />
+      <Skeleton width="80%" className={styles.skeletonDescription} />
+      <Stack
+        direction="row"
+        align="baseline"
+        gap="4px"
+        justifyContent="center"
+        width="100%"
+      >
+        <Skeleton width="50px" className={styles.skeletonValue} />
+        <Skeleton width="20px" className={styles.skeletonUnit} />
       </Stack>
     </div>
   );
