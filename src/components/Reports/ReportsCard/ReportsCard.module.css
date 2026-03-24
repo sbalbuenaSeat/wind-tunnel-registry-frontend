@@ -178,18 +178,31 @@
   color: var(--chakra-colors-fg-muted);
 }
 
+.skeletonLabel {
+  height: 24px;
+}
+.skeletonDescription {
+  height: 16px;
+}
+.skeletonValue {
+  height: 36px;
+}
+.skeletonUnit {
+  height: 20px;
+}
+
 @media screen and (max-width: 480px) {
   .skeletonLabel {
-    height: 14px !important;
+    height: 14px;
   }
   .skeletonDescription {
-    display: none !important;
+    display: none;
   }
   .skeletonValue {
-    height: 24px !important;
+    height: 24px;
   }
   .skeletonUnit {
-    height: 14px !important;
+    height: 14px;
   }
 }
 
