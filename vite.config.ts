@@ -10,6 +10,9 @@ export default defineConfig(({ mode }) => {
     define: {
       API_URL: JSON.stringify(env.VITE_API_URL),
     },
+    server: {
+      open: true,
+    },
     plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
     build: {
       rollupOptions: {
@@ -37,7 +40,7 @@ export default defineConfig(({ mode }) => {
         '@services': path.resolve(__dirname, './src/services'),
         '@assets': path.resolve(__dirname, './src/assets'),
         '@App': path.resolve(__dirname, './src/App.tsx'),
-        '@hooks': path.resolve(__dirname, './src/hooks.tsx'),
+        '@hooks': path.resolve(__dirname, './src/hooks'),
         '@': path.resolve(__dirname, './src'),
       },
     },
