@@ -1,3 +1,4 @@
+import { fireEvent } from '@testing-library/react';
 import { CHECK_SESSION_MOCK } from '@tests/mocks/checkSession/checkSessionMock.ts';
 import { render, screen } from '@tests/testing.tsx';
 import { mockFetchResponse } from '@tests/utils/mockFetchResponse.ts';
@@ -14,7 +15,12 @@ describe('App', () => {
       const dashboardTitle = screen.queryByText(
         /Welcome to your dashboard, Test User. Here you can manage your records./i,
       );
+      const dashBoardButton = await screen.findByRole('button', {
+        name: /Go to dashboard/i,
+      });
+
       expect(homeTitle).toBeInTheDocument();
+      expect(dashBoardButton).toBeInTheDocument();
       expect(dashboardTitle).not.toBeInTheDocument();
     });
   });
@@ -48,14 +54,26 @@ describe('App', () => {
     it('should authenticate user', async () => {
       const modifiedResponse = structuredClone(CHECK_SESSION_MOCK);
       modifiedResponse.authenticated = false;
-      mockFetchResponse(`${API_URL}/auth/session`, modifiedResponse);
+      mockFetchResponse(`${API_URL}/auth/session`, modifiedResponse, 401);
+      const originalLocation = window.location;
+
+      Object.defineProperty(window, 'location', {
+        configurable: true,
+        value: {
+          ...originalLocation,
+          href: '',
+        },
+      });
 
       render(<App />);
+
       const loginButton = await screen.findByRole('button', {
         name: /Continue with Google/i,
       });
 
-      expect(loginButton).toBeInTheDocument();
+      fireEvent.click(loginButton);
+
+      expect(window.location.href).toBe(`${API_URL}/auth/google`);
     });
   });
 });
