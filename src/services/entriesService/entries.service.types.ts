@@ -1,13 +1,15 @@
+export type EntryType = 'INDIVIDUAL' | 'GROUP' | 'DEFAULT';
+
 export interface Entry {
   id: string;
-  type: string;
+  type: EntryType;
   date: string;
   minutes: number;
   note?: string;
 }
 
 export interface CreateEntryPayload {
-  type: string;
+  type: EntryType;
   minutes: number;
   date: string;
   note?: string;

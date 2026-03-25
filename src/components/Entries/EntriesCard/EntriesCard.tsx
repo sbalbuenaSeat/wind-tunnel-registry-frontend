@@ -39,10 +39,10 @@ const EntryDate = ({ date }: EntriesCardDateProps) => (
 
 const TYPE_CONFIG: Record<
   string,
-  { colorPalette: string; icon: typeof HiOutlineUser }
+  { colorPalette: string; icon: typeof HiOutlineUser; label: string }
 > = {
-  INDIVIDUAL: { colorPalette: 'blue', icon: HiOutlineUser },
-  DEFAULT: { colorPalette: 'purple', icon: HiOutlineUsers },
+  INDIVIDUAL: { colorPalette: 'blue', icon: HiOutlineUser, label: '1-on-1' },
+  DEFAULT: { colorPalette: 'purple', icon: HiOutlineUsers, label: 'group' },
 };
 
 const Type = ({ type }: EntriesCardTypeProps) => {
@@ -52,14 +52,14 @@ const Type = ({ type }: EntriesCardTypeProps) => {
     <Badge
       colorPalette={config.colorPalette}
       variant="subtle"
-      aria-label={`Session type: ${type}`}
+      aria-label={`Session type: ${config.label}`}
       display="flex"
       alignItems="center"
       gap="1"
       px="2"
     >
       <Icon as={config.icon} />
-      {type}
+      {config.label}
     </Badge>
   );
 };

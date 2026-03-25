@@ -1,4 +1,5 @@
 import { type ReactNode } from 'react';
+import { type EntryType } from '@services/entriesService/entries.service.types.ts';
 
 export interface EntriesCardProps {
   children: ReactNode;
@@ -14,7 +15,7 @@ export interface EntriesCardDateProps {
 }
 
 export interface EntriesCardTypeProps {
-  type: string;
+  type: EntryType;
 }
 
 export interface EntriesCardContentProps {

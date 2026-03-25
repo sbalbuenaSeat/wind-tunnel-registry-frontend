@@ -10,6 +10,8 @@ export const EntriesSkeleton = () => {
         <EntriesCardSkeleton />
         <EntriesCardSkeleton />
         <EntriesCardSkeleton />
+        <EntriesCardSkeleton />
+        <EntriesCardSkeleton />
       </div>
     </div>
   );
