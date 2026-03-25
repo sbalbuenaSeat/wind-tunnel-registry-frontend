@@ -4,12 +4,7 @@
   padding: 16px;
   border-radius: 12px;
   gap: 8px;
-  background-color: color-mix(
-    in srgb,
-    var(--chakra-colors-bg-panel),
-    transparent 5%
-  );
-  backdrop-filter: blur(8px);
+  background-color: var(--chakra-colors-bg-panel);
   border: 1px solid var(--chakra-colors-border);
   box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.1),
