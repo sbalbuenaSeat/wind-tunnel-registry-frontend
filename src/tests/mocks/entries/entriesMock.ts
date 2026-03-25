@@ -20,14 +20,14 @@ export const ENTRIES_MOCK: EntriesResponse = [
     type: 'INDIVIDUAL',
     date: '2026-03-09',
     minutes: 25,
-    note: 'entreno de outface',
+    note: 'outface training',
   },
   {
     id: '69a9642e7937a6510ecb803b',
     type: 'SHARED',
     date: '2024-03-05',
     minutes: 30,
-    note: 'el usuario 1',
+    note: 'user 1',
   },
   {
     id: '69a964907937a6510ecb8051',
@@ -41,6 +41,6 @@ export const ENTRIES_MOCK: EntriesResponse = [
     type: 'SHARED',
     date: '2024-03-04',
     minutes: 5,
-    note: 'Entrenamiento intenso, duró más de lo previsto',
+    note: 'Intense training, lasted longer than expected',
   },
 ];

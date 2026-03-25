@@ -28,3 +28,9 @@ export interface EntriesCardMinutesProps {
 export interface EntriesCardNoteProps {
   note: string;
 }
+
+export interface EntriesCardFooterProps {
+  onEdit: () => void;
+  onDelete: () => void;
+  date: string;
+}
