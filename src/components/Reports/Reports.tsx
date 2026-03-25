@@ -13,11 +13,9 @@ export const Reports = () => {
 
   return (
     <div className={styles.reportsContainer}>
-      <div className={styles.cardsGrid}>
-        {reports?.cards?.map((card) => (
-          <ReportsCard key={card.label} {...card} />
-        ))}
-      </div>
+      {reports?.cards?.map((card) => (
+        <ReportsCard key={card.label} {...card} />
+      ))}
     </div>
   );
 };

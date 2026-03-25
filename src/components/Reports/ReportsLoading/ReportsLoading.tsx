@@ -4,11 +4,9 @@ import styles from '../Reports.module.css';
 export const ReportsLoading = () => {
   return (
     <div className={styles.reportsContainer}>
-      <div className={styles.cardsGrid}>
-        <ReportsCardSkeleton />
-        <ReportsCardSkeleton />
-        <ReportsCardSkeleton />
-      </div>
+      <ReportsCardSkeleton />
+      <ReportsCardSkeleton />
+      <ReportsCardSkeleton />
     </div>
   );
 };
