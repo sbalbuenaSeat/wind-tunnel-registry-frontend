@@ -1,0 +1,88 @@
+.entriesCard {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border-radius: 12px;
+  gap: 8px;
+  background-color: color-mix(
+    in srgb,
+    var(--chakra-colors-bg-panel),
+    transparent 5%
+  );
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--chakra-colors-border);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.date {
+  font-size: 14px;
+  color: var(--chakra-colors-fg-subtle);
+  font-weight: 500;
+}
+
+.type {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.individual {
+  background-color: var(--chakra-colors-blue-100);
+  color: var(--chakra-colors-blue-700);
+}
+
+:global(.dark) .individual {
+  background-color: var(--chakra-colors-blue-900);
+  color: var(--chakra-colors-blue-200);
+}
+
+.shared {
+  background-color: var(--chakra-colors-purple-100);
+  color: var(--chakra-colors-purple-700);
+}
+
+:global(.dark) .shared {
+  background-color: var(--chakra-colors-purple-900);
+  color: var(--chakra-colors-purple-200);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.minutesContainer {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.minutesValue {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--chakra-colors-fg);
+}
+
+.minutesUnit {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--chakra-colors-fg-subtle);
+}
+
+.note {
+  font-size: 14px;
+  color: var(--chakra-colors-fg-muted);
+  font-style: italic;
+  margin-top: 4px;
+}
