@@ -1,21 +1,22 @@
-import { Skeleton, Stack } from '@chakra-ui/react';
-import styles from '../ReportsCard.module.css';
+import { Skeleton } from '@chakra-ui/react';
+import { getClassNames } from '@services/utils/getClassNames';
+import cardStyles from '../ReportsCard.module.css';
+import styles from './ReportsCardSkeleton.module.css';
 
 export const ReportsCardSkeleton = () => {
+  const containerClasses = getClassNames({
+    [cardStyles.reportsCard]: true,
+    [styles.reportsCardSkeleton]: true,
+  });
+
   return (
-    <div className={styles.reportsCard}>
+    <div className={containerClasses}>
       <Skeleton width="60%" className={styles.skeletonLabel} />
       <Skeleton width="80%" className={styles.skeletonDescription} />
-      <Stack
-        direction="row"
-        align="baseline"
-        gap="4px"
-        justifyContent="center"
-        width="100%"
-      >
+      <div className={cardStyles.reportsCardValueContainer}>
         <Skeleton width="50px" className={styles.skeletonValue} />
         <Skeleton width="20px" className={styles.skeletonUnit} />
-      </Stack>
+      </div>
     </div>
   );
 };
