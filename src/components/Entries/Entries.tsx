@@ -19,7 +19,7 @@ export const Entries = () => {
   if (!entries?.length) {
     return (
       <EntriesList>
-        <div className={styles.empty}>You have no registered entries.</div>
+        <div className={styles.empty}>No flights registered yet.</div>
       </EntriesList>
     );
   }

@@ -4,7 +4,7 @@ import { type EntriesListProps } from './EntriesList.types.ts';
 export const EntriesList = ({ children }: EntriesListProps) => {
   return (
     <div className={styles.entriesContainer}>
-      <h2 className={styles.title}>My Entries</h2>
+      <h2 className={styles.title}>Flight Log</h2>
       <div className={styles.entriesGrid}>{children}</div>
     </div>
   );

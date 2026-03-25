@@ -65,27 +65,20 @@
 }
 
 .note {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--chakra-colors-fg-muted);
   font-style: italic;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  text-align: left;
-  flex: 1;
 }
 
-@media screen and (max-width: 480px) {
+@media (max-width: 480px) {
   .content {
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
-    min-height: auto;
-  }
-
-  .note {
-    text-align: left;
     min-height: 20px;
   }
 }

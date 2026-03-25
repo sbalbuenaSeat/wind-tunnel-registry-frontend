@@ -111,7 +111,7 @@ const Footer = ({ onEdit, onDelete, date }: EntriesCardFooterProps) => (
         variant="ghost"
         colorPalette="blue"
         onClick={onEdit}
-        aria-label={`Edit entry from ${date}`}
+        aria-label={`Edit flight from ${date}`}
         size="sm"
       >
         <HiOutlinePencil />
@@ -120,7 +120,7 @@ const Footer = ({ onEdit, onDelete, date }: EntriesCardFooterProps) => (
         variant="ghost"
         colorPalette="red"
         onClick={onDelete}
-        aria-label={`Delete entry from ${date}`}
+        aria-label={`Delete flight from ${date}`}
         size="sm"
       >
         <HiOutlineTrash />
