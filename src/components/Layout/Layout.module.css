@@ -24,7 +24,7 @@
 
 .mainContainer {
   background: linear-gradient(to bottom right, #eff6ff, #f5f3ff, #fdf2f8);
-  height: calc(100vh - 69px);
+  min-height: calc(100vh - 69px);
   padding: 40px;
 }
 
@@ -35,5 +35,5 @@
 }
 
 :global(.dark) .mainContainer {
-  background: linear-gradient(to bottom right, #111827, #1e3a8a, #111827);
+  background: linear-gradient(to bottom right, #243045, #1e3a8a, #243045);
 }

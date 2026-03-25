@@ -85,4 +85,8 @@
   color: var(--chakra-colors-fg-muted);
   font-style: italic;
   margin-top: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
