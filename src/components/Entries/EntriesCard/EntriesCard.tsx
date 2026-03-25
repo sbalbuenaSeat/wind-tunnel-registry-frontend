@@ -52,6 +52,12 @@ const Type = ({ type }: EntriesCardTypeProps) => {
     <Badge
       colorPalette={config.colorPalette}
       variant="subtle"
+      _dark={{
+        bg: `${config.colorPalette}.950`,
+        color: `${config.colorPalette}.200`,
+        borderColor: `${config.colorPalette}.800`,
+        borderWidth: '1px',
+      }}
       aria-label={`Session type: ${config.label}`}
       display="flex"
       alignItems="center"
@@ -73,7 +79,12 @@ const Minutes = ({ minutes }: EntriesCardMinutesProps) => {
   return (
     <div className={styles.minutesContainer}>
       <div className={styles.timeWrapper}>
-        <Icon as={LuClock} boxSize="16px" color="gray.500" />
+        <Icon
+          as={LuClock}
+          boxSize="16px"
+          color="gray.500"
+          _dark={{ color: 'gray.400' }}
+        />
         <div className={styles.timeValues}>
           {timeParts.map((part) => (
             <React.Fragment key={`${part.value}-${part.unit}`}>
