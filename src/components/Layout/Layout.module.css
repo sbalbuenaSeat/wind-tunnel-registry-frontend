@@ -37,3 +37,9 @@
 :global(.dark) .mainContainer {
   background: linear-gradient(to bottom right, #243045, #1e3a8a, #243045);
 }
+
+@media (min-width: 481px) {
+  .nav {
+    padding: 16px 40px;
+  }
+}
