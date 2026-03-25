@@ -1,5 +1,5 @@
 .homeContainer {
-  min-height: calc(100vh - 69px - 80px); /* Total viewport - navbar - mainContainer padding */
+  min-height: calc(100vh - 69px - 80px);
   display: flex;
   align-items: center;
   justify-content: center;

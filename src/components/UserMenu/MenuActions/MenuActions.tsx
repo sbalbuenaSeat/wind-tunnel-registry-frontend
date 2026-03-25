@@ -33,7 +33,12 @@ export const MenuActions = () => {
           <Text>{colorMode === 'light' ? 'Dark Theme' : 'Light Theme'}</Text>
         </MenuItem>
         <MenuSeparator />
-        <MenuItem value="logout" onClick={handleLogout} color="red.600" _dark={{ color: 'red.400' }}>
+        <MenuItem
+          value="logout"
+          onClick={handleLogout}
+          color="red.600"
+          _dark={{ color: 'red.400' }}
+        >
           <LuLogOut />
           <Text>Logout</Text>
         </MenuItem>

@@ -1,4 +1,4 @@
-import type { EntriesResponse } from '@services/entriesService/entries.service.types';
+import { type EntriesResponse } from '@services/entriesService/entries.service.types';
 
 export const ENTRIES_MOCK: EntriesResponse = [
   {
