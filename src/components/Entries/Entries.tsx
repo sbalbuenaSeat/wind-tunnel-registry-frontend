@@ -25,12 +25,10 @@ export const Entries = () => {
             <EntriesCard key={entry.id}>
               <EntriesCard.Header>
                 <EntriesCard.Type type={entry.type} />
-                <EntriesCard.Date date={entry.date} />
+                <EntriesCard.Minutes minutes={entry.minutes} />
               </EntriesCard.Header>
               <Separator aria-hidden="true" />
               <EntriesCard.Content>
-                <EntriesCard.Minutes minutes={entry.minutes} />
-                <Separator aria-hidden="true" />
                 <EntriesCard.Note note={entry.note ?? ''} />
               </EntriesCard.Content>
               <Separator aria-hidden="true" />

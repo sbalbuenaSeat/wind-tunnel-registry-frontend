@@ -30,21 +30,31 @@
 
 .content {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
   flex: 1 1 auto;
-  gap: 4px;
 }
 
 .minutesContainer {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 4px;
+  flex-shrink: 0;
+}
+
+.timeWrapper {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
 }
 
 .minutesValue {
-  font-size: 24px;
-  font-weight: 800;
+  font-size: 20px;
+  font-weight: 700;
   color: var(--chakra-colors-fg);
+  line-height: 1;
 }
 
 .minutesUnit {
@@ -54,18 +64,27 @@
 }
 
 .note {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--chakra-colors-fg-muted);
   font-style: italic;
-  margin-top: 4px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-align: left;
+  flex: 1;
 }
 
 @media screen and (max-width: 480px) {
+  .content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    min-height: auto;
+  }
+
   .note {
+    text-align: left;
     min-height: 20px;
   }
 }
