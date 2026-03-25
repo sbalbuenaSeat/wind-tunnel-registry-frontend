@@ -42,7 +42,13 @@
 .timeWrapper {
   display: flex;
   align-items: baseline;
-  gap: 2px;
+  gap: 8px;
+}
+
+.timeValues {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
 }
 
 .minutesValue {

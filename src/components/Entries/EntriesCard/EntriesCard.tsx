@@ -74,12 +74,14 @@ const Minutes = ({ minutes }: EntriesCardMinutesProps) => {
     <div className={styles.minutesContainer}>
       <div className={styles.timeWrapper}>
         <Icon as={LuClock} boxSize="16px" color="gray.500" />
-        {timeParts.map((part) => (
-          <React.Fragment key={`${part.value}-${part.unit}`}>
-            <span className={styles.minutesValue}>{part.value}</span>
-            <span className={styles.minutesUnit}>{part.unit}</span>
-          </React.Fragment>
-        ))}
+        <div className={styles.timeValues}>
+          {timeParts.map((part) => (
+            <React.Fragment key={`${part.value}-${part.unit}`}>
+              <span className={styles.minutesValue}>{part.value}</span>
+              <span className={styles.minutesUnit}>{part.unit}</span>
+            </React.Fragment>
+          ))}
+        </div>
       </div>
     </div>
   );
