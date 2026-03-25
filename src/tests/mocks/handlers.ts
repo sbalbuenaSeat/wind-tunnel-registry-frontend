@@ -1,4 +1,5 @@
 import { CHECK_SESSION_MOCK } from '@tests/mocks/checkSession/checkSessionMock.ts';
+import { ENTRIES_MOCK } from '@tests/mocks/entries/entriesMock.ts';
 import { LOGOUT_MOCK } from '@tests/mocks/logout/checkSessionMock.ts';
 import { REPORTS_MOCK } from '@tests/mocks/reports/reportsMock.ts';
 import { HttpResponse, http } from 'msw';
@@ -12,5 +13,8 @@ export const handlers = [
   }),
   http.get(`${API_URL}/reports/total-by-type`, () => {
     return HttpResponse.json(REPORTS_MOCK, { status: 200 });
+  }),
+  http.get(`${API_URL}/entries`, () => {
+    return HttpResponse.json(ENTRIES_MOCK, { status: 200 });
   }),
 ];

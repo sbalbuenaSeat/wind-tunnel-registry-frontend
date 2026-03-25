@@ -14,12 +14,12 @@ const CARD_CONFIGS: {
     description: 'Total time accumulated in the wind tunnel.',
   },
   {
-    label: 'Individual',
+    label: '1-on-1',
     type: 'individual',
-    description: 'Flights performed autonomously.',
+    description: 'Flights performed with an instructor.',
   },
   {
-    label: 'Shared',
+    label: 'Group',
     type: 'shared',
     description: 'Flights performed with other skydivers.',
   },
