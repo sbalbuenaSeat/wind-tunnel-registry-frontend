@@ -2,11 +2,13 @@ import { useAuth } from '@hooks/useAuth/useAuth.ts';
 import { getEntries } from '@services/entriesService/entries.service';
 import useSWR from 'swr';
 
+export const ENTRIES_KEY = 'entries';
+
 export const useEntries = () => {
   const { isAuthenticated } = useAuth();
 
   const { data, isLoading, error, mutate } = useSWR(
-    isAuthenticated ? 'entries' : null,
+    isAuthenticated ? ENTRIES_KEY : null,
     getEntries,
     {
       revalidateOnFocus: false,
@@ -18,6 +20,6 @@ export const useEntries = () => {
     entries: data,
     isLoading,
     error,
-    mutate,
+    mutateEntries: mutate,
   };
 };
