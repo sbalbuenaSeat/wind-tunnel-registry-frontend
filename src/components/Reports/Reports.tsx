@@ -5,11 +5,11 @@ import { useDashboardContext } from '@hooks/useDashboard/useDashboard';
 import styles from './Reports.module.css';
 
 export const Reports = () => {
-  const { reports, isLoading, error } = useDashboardContext();
+  const { reports, isReportsLoading, reportsError } = useDashboardContext();
 
-  if (isLoading) return <ReportsLoading />;
+  if (isReportsLoading) return <ReportsLoading />;
 
-  if (error) return <ReportsError />;
+  if (reportsError) return <ReportsError />;
 
   return (
     <div className={styles.reportsContainer}>
