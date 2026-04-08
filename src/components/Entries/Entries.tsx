@@ -62,7 +62,7 @@ export const Entries = () => {
             </EntriesCard.Content>
             <Separator aria-hidden="true" />
             <EntriesCard.Footer
-              onEdit={() => console.log('Edit', entry.id)}
+              onEdit={() => console.log('Edit test', entry.id)}
               onDelete={() => handleDeleteDialog(true, entry.id)}
               date={entry.date}
             />
