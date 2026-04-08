@@ -1,4 +1,4 @@
-export type EntryType = 'INDIVIDUAL' | 'SHARED' | 'DEFAULT';
+export type EntryType = 'INDIVIDUAL' | 'SHARED';
 
 export interface Entry {
   id: string;

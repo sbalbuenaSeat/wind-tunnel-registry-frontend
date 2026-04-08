@@ -1,11 +1,11 @@
 import { ReportsCard } from '@components/Reports/ReportsCard/ReportsCard.tsx';
 import { ReportsError } from '@components/Reports/ReportsError/ReportsError.tsx';
 import { ReportsLoading } from '@components/Reports/ReportsLoading/ReportsLoading.tsx';
-import { useDashboardContext } from '@hooks/useDashboard/useDashboard';
+import { useDashboardData } from '@hooks/useDashboard/useDashboard';
 import styles from './Reports.module.css';
 
 export const Reports = () => {
-  const { reports, isReportsLoading, reportsError } = useDashboardContext();
+  const { reports, isReportsLoading, reportsError } = useDashboardData();
 
   if (isReportsLoading) return <ReportsLoading />;
 
