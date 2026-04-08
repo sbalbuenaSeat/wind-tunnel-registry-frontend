@@ -15,19 +15,19 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
     build: {
-      rollupOptions: {
+      rolldownOptions: {
         output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              if (id.includes('react')) return 'vendor-react';
-              if (
-                id.includes('@chakra-ui') ||
-                id.includes('@emotion') ||
-                id.includes('framer-motion')
-              )
-                return 'vendor-ui';
-              return 'vendor';
-            }
+          codeSplitting: {
+            groups: [
+              {
+                test: /node_modules\/(react|react-dom)/,
+                name: 'vendor-react',
+              },
+              {
+                test: /node_modules\/(@chakra-ui|@emotion|framer-motion)/,
+                name: 'vendor-ui',
+              },
+            ],
           },
         },
       },
