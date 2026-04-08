@@ -6,7 +6,7 @@
 
 .nav {
   border-bottom: 1px solid var(--chakra-colors-border);
-  padding: 16px;
+  padding: 10px 16px;
 }
 
 .navContainer {
@@ -14,23 +14,46 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  gap: 10px;
 }
 
 .navRight {
   display: flex;
-  gap: 24px;
+  gap: 10px;
   align-items: center;
+  min-width: 0;
 }
 
 .mainContainer {
   background: linear-gradient(to bottom right, #eff6ff, #f5f3ff, #fdf2f8);
-  min-height: calc(100vh - 69px);
+  min-height: calc(100vh - 49px);
   padding: 40px;
+}
+
+.createButtonText {
+  display: inline;
 }
 
 @media screen and (max-width: 480px) {
   .mainContainer {
     padding: 16px;
+    min-height: calc(100vh - 45px);
+  }
+
+  .nav {
+    padding: 8px 12px;
+  }
+
+  .navContainer {
+    gap: 6px;
+  }
+
+  .navRight {
+    gap: 6px;
+  }
+
+  .createButtonText {
+    display: none;
   }
 }
 
@@ -40,6 +63,6 @@
 
 @media (min-width: 481px) {
   .nav {
-    padding: 16px 40px;
+    padding: 10px 24px;
   }
 }

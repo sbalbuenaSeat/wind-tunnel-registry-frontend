@@ -62,8 +62,8 @@ export const EntryFormDialog = ({
                       )
                     }
                   >
-                    <option value="INDIVIDUAL">Individual</option>
-                    <option value="SHARED">Shared</option>
+                    <option value="INDIVIDUAL">1-on-1</option>
+                    <option value="SHARED">Group</option>
                   </NativeSelect.Field>
                   <NativeSelect.Indicator />
                 </NativeSelect.Root>

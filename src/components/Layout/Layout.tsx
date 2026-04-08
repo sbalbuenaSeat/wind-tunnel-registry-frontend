@@ -50,7 +50,7 @@ export const Layout = () => {
         <div className={styles.navContainer}>
           <ChakraLink asChild variant="plain">
             <RouterLink to="/">
-              <Heading size={{ base: 'sm', md: 'md' }}>
+              <Heading size={{ base: 'xs', md: 'sm' }}>
                 Wind Tunnel Logbook
               </Heading>
             </RouterLink>
@@ -60,11 +60,13 @@ export const Layout = () => {
             {isAuthenticated && (
               <Button
                 onClick={openCreateEntryModal}
-                size={{ base: 'xs', sm: 'sm', md: 'md' }}
-                px={{ base: 2.5, sm: 3, md: 4 }}
-                minW={{ base: 'auto', md: 'unset' }}
+                size="xs"
+                px={{ base: 2, sm: 2.5 }}
+                minW={{ base: '30px', sm: 'auto' }}
+                h={{ base: '28px', md: '30px' }}
+                aria-label="Create new entry"
               >
-                <Icon as={LuPlus} boxSize={{ base: 4, md: 4.5 }} />
+                <Icon as={LuPlus} boxSize={{ base: 3.5, md: 4 }} />
                 <span className={styles.createButtonText}>New entry</span>
               </Button>
             )}
