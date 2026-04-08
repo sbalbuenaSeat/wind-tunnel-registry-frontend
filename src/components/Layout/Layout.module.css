@@ -5,8 +5,13 @@
 }
 
 .nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   border-bottom: 1px solid var(--chakra-colors-border);
+  background: var(--chakra-colors-bg);
   padding: 10px 16px;
+  backdrop-filter: blur(8px);
 }
 
 .navContainer {

@@ -18,11 +18,14 @@
 }
 
 .loading,
-.error,
-.empty {
+.error {
   padding: 40px;
   text-align: center;
-  color: var(--chakra-colors-fg-subtle);
+  color: var(--chakra-colors);
+}
+
+.empty {
+  color: var(--chakra-colors-fg);
 }
 
 .error {
