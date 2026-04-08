@@ -1,35 +1,20 @@
 import { createContext, type ReactNode } from 'react';
+import { useCreateEntry } from '@hooks/useCreateEntry/useCreateEntry.ts';
 import { useDeleteEntry } from '@hooks/useDeleteEntry/useDeleteEntry';
 import { useEntries } from '@hooks/useEntries/useEntries';
 import { useFlightDetails } from '@hooks/useFlightDetails/useFlightDetails';
 import { useUpdateEntry } from '@hooks/useUpdateEntry/useUpdateEntry';
-import {
-  type EntriesResponse,
-  type UpdateEntryPayload,
-} from '@services/entriesService/entries.service.types.ts';
-import { type MappedFlightDetailsResponse } from '@services/reportsService/reports.service.types.ts';
+import { type DashboardDataContextType } from './DashboardContext.types.ts';
 
-export interface DashboardContextType {
-  reports: MappedFlightDetailsResponse | undefined;
-  isReportsLoading: boolean;
-  reportsError: unknown;
-  entries: EntriesResponse | undefined;
-  isEntriesLoading: boolean;
-  entriesError: unknown;
-  deleteEntry: (id: string) => Promise<void>;
-  isDeletingEntry: boolean;
-  updateEntry: (arg: {
-    id: string;
-    payload: UpdateEntryPayload;
-  }) => Promise<void>;
-  isUpdatingEntry: boolean;
-}
+export const DashboardDataContext = createContext<
+  DashboardDataContextType | undefined
+>(undefined);
 
-export const DashboardContext = createContext<DashboardContextType | undefined>(
-  undefined,
-);
-
-export const DashboardProvider = ({ children }: { children: ReactNode }) => {
+export const DashboardDataProvider = ({
+  children,
+}: {
+  children: ReactNode;
+}) => {
   const {
     data: reports,
     isLoading: isReportsLoading,
@@ -43,27 +28,36 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
     error: entriesError,
   } = useEntries();
 
+  const { createEntry: createEntryMutation, isCreatingEntry } =
+    useCreateEntry();
+
   const { deleteEntry: deleteEntryMutation, isDeletingEntry } =
     useDeleteEntry();
 
   const { updateEntry: updateEntryMutation, isUpdatingEntry } =
     useUpdateEntry();
 
+  const createEntry = async (
+    payload: Parameters<typeof createEntryMutation>[0],
+  ) => {
+    await createEntryMutation(payload);
+    await mutateReports();
+  };
+
   const deleteEntry = async (id: string) => {
     await deleteEntryMutation(id);
     await mutateReports();
   };
 
-  const updateEntry = async (arg: {
-    id: string;
-    payload: UpdateEntryPayload;
-  }) => {
+  const updateEntry = async (
+    arg: Parameters<typeof updateEntryMutation>[0],
+  ) => {
     await updateEntryMutation(arg);
     await mutateReports();
   };
 
   return (
-    <DashboardContext.Provider
+    <DashboardDataContext.Provider
       value={{
         reports,
         isReportsLoading,
@@ -75,9 +69,11 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
         isDeletingEntry,
         updateEntry,
         isUpdatingEntry,
+        isCreatingEntry,
+        createEntry,
       }}
     >
       {children}
-    </DashboardContext.Provider>
+    </DashboardDataContext.Provider>
   );
 };

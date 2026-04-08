@@ -1,12 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
-import Layout from '@components/Layout/Layout';
+import { Layout } from '@components/Layout/Layout.tsx';
 import { ProtectedRoute } from '@components/ProtectedRoute.tsx';
-import { DashboardProvider } from '@/context/DashboardContext/DashboardContext';
+import { DashboardDataProvider } from '@/context/DashboardDataContext/DashboardContext.tsx';
 import { Dashboard, Home } from './routes/lazyRoutes';
 
 export const App = () => {
   return (
-    <DashboardProvider>
+    <DashboardDataProvider>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
@@ -15,6 +15,6 @@ export const App = () => {
           </Route>
         </Route>
       </Routes>
-    </DashboardProvider>
+    </DashboardDataProvider>
   );
 };
