@@ -15,7 +15,7 @@ export const ReportsCard = ({
   });
 
   return (
-    <div className={containerClasses}>
+    <div className={containerClasses} data-testid={`reports-card-${type}`}>
       <div className={styles.reportsCardLabel}>{label}</div>
       <div className={styles.reportsCardDescription}>{description}</div>
 
