@@ -34,7 +34,7 @@
 .individual,
 .shared {
   --card-bg-top: rgba(255, 255, 255, 0.82);
-  --card-bg-bottom: rgba(245, 245, 247, 0.68);
+  --card-bg-bottom: rgba(245, 245, 247, 0.75);
   --card-border: rgba(255, 255, 255, 0.92);
 }
 
