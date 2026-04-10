@@ -1,4 +1,12 @@
-import { Field, Input, NativeSelect, Textarea, VStack } from '@chakra-ui/react';
+import {
+  createListCollection,
+  Field,
+  Input,
+  Portal,
+  Select,
+  Textarea,
+  VStack,
+} from '@chakra-ui/react';
 import { FormDialog } from '@components/ui/form-dialog.tsx';
 import { useEntryForm } from '@hooks/useEntryForm/useEntryForm.ts';
 import { Controller } from 'react-hook-form';
@@ -7,6 +15,13 @@ import {
   type EntryFormDialogProps,
   type EntryFormValues,
 } from './EntryFormDialog.types.ts';
+
+const entryTypeCollection = createListCollection({
+  items: [
+    { label: '1-on-1', value: 'INDIVIDUAL' },
+    { label: 'Group', value: 'SHARED' },
+  ],
+});
 
 export const EntryFormDialog = ({
   open,
@@ -28,6 +43,27 @@ export const EntryFormDialog = ({
     onSubmit,
   });
 
+  const fieldStyles = {
+    borderRadius: 'xl',
+    bg: 'rgba(255,255,255,0.72)',
+    borderColor: 'blackAlpha.200',
+    backdropFilter: 'blur(10px)',
+    _hover: { bg: 'rgba(255,255,255,0.82)' },
+    _focusVisible: {
+      borderColor: 'blue.400',
+      boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.22)',
+    },
+    _dark: {
+      bg: 'rgba(255,255,255,0.08)',
+      borderColor: 'whiteAlpha.200',
+      _hover: { bg: 'rgba(255,255,255,0.12)' },
+      _focusVisible: {
+        borderColor: 'blue.300',
+        boxShadow: '0 0 0 3px rgba(96, 165, 250, 0.22)',
+      },
+    },
+  };
+
   return (
     <FormDialog
       open={open}
@@ -39,7 +75,14 @@ export const EntryFormDialog = ({
       isLoading={isLoading}
       isSubmitDisabled={false}
       submitFormId={ENTRY_FORM_ID}
-      contentProps={{ maxW: 'lg', w: 'full' }}
+      backdropProps={{
+        bg: 'rgba(2, 6, 23, 0.78)',
+        backdropFilter: 'blur(10px)',
+      }}
+      contentProps={{
+        maxW: 'lg',
+        w: 'full',
+      }}
     >
       <form id={ENTRY_FORM_ID} onSubmit={submitForm}>
         <VStack gap="4" align="stretch">
@@ -50,23 +93,47 @@ export const EntryFormDialog = ({
               control={control}
               rules={entryFormRules.type}
               render={({ field }) => (
-                <NativeSelect.Root>
-                  <NativeSelect.Field
-                    name={field.name}
-                    value={field.value}
-                    onBlur={field.onBlur}
-                    ref={field.ref}
-                    onChange={(event) =>
-                      field.onChange(
-                        event.target.value as EntryFormValues['type'],
-                      )
-                    }
-                  >
-                    <option value="INDIVIDUAL">1-on-1</option>
-                    <option value="SHARED">Group</option>
-                  </NativeSelect.Field>
-                  <NativeSelect.Indicator />
-                </NativeSelect.Root>
+                <Select.Root
+                  collection={entryTypeCollection}
+                  value={field.value ? [field.value] : []}
+                  onValueChange={({ value }) =>
+                    field.onChange(value[0] as EntryFormValues['type'])
+                  }
+                >
+                  <Select.HiddenSelect name={field.name} />
+                  <Select.Control>
+                    <Select.Trigger {...fieldStyles}>
+                      <Select.ValueText placeholder="Select type" />
+                    </Select.Trigger>
+                    <Select.IndicatorGroup>
+                      <Select.Indicator />
+                    </Select.IndicatorGroup>
+                  </Select.Control>
+
+                  <Portal>
+                    <Select.Positioner>
+                      <Select.Content
+                        borderRadius="xl"
+                        bg="rgba(255,255,255,0.9)"
+                        border="1px solid"
+                        borderColor="blackAlpha.100"
+                        backdropFilter="blur(18px)"
+                        boxShadow="lg"
+                        _dark={{
+                          bg: 'rgba(24,24,27,0.92)',
+                          borderColor: 'whiteAlpha.200',
+                        }}
+                      >
+                        {entryTypeCollection.items.map((item) => (
+                          <Select.Item item={item} key={item.value}>
+                            {item.label}
+                            <Select.ItemIndicator />
+                          </Select.Item>
+                        ))}
+                      </Select.Content>
+                    </Select.Positioner>
+                  </Portal>
+                </Select.Root>
               )}
             />
             {errors.type && (
@@ -76,7 +143,11 @@ export const EntryFormDialog = ({
 
           <Field.Root invalid={!!errors.date}>
             <Field.Label>Date</Field.Label>
-            <Input type="date" {...register('date', entryFormRules.date)} />
+            <Input
+              type="date"
+              {...fieldStyles}
+              {...register('date', entryFormRules.date)}
+            />
             {errors.date && (
               <Field.ErrorText>{errors.date.message}</Field.ErrorText>
             )}
@@ -87,6 +158,7 @@ export const EntryFormDialog = ({
             <Input
               type="number"
               min={1}
+              {...fieldStyles}
               {...register('minutes', entryFormRules.minutes)}
             />
             {errors.minutes && (
@@ -96,7 +168,12 @@ export const EntryFormDialog = ({
 
           <Field.Root invalid={!!errors.note}>
             <Field.Label>Note</Field.Label>
-            <Textarea {...register('note', entryFormRules.note)} />
+            <Textarea
+              minH="120px"
+              resize="vertical"
+              {...fieldStyles}
+              {...register('note', entryFormRules.note)}
+            />
             {errors.note && (
               <Field.ErrorText>{errors.note.message}</Field.ErrorText>
             )}
