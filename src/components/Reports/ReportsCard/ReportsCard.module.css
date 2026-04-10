@@ -75,7 +75,6 @@
     0 10px 28px rgba(0, 0, 0, 0.28);
 }
 
-/* Total = negro glass */
 :global(.dark) .total {
   --card-bg-top: rgba(8, 12, 20, 0.9);
   --card-bg-bottom: rgba(4, 8, 14, 0.9);
@@ -83,9 +82,9 @@
 
   --description-color: var(--chakra-colors-fg-subtle);
   --value-num-color: var(--chakra-colors-fg);
+  --unit-color: rgba(255, 255, 255, 0.9);
 }
 
-/* Individual = azul glass */
 :global(.dark) .individual {
   --card-bg-top: rgba(20, 56, 120, 0.8);
   --card-bg-bottom: rgba(10, 26, 64, 0.8);
