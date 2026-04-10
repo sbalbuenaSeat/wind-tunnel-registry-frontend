@@ -24,7 +24,7 @@ describe('ReportsCard', () => {
         description: 'Flights performed with other skydivers.',
         values: ['1', 'h'],
       },
-    ])('should render $label, $description card correctly ', async ({
+    ])('should render card $testId correctly ', async ({
       testId,
       label,
       description,
