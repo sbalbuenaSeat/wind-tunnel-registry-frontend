@@ -76,10 +76,9 @@
 }
 
 :global(.dark) .total {
-  --card-bg-top: rgba(8, 12, 20, 0.9);
-  --card-bg-bottom: rgba(4, 8, 14, 0.9);
+  --card-bg-top: rgba(24, 24, 27, 1);
+  --card-bg-bottom: rgba(18, 18, 22, 1);
   --card-border: rgba(255, 255, 255, 0.4);
-
   --description-color: var(--chakra-colors-fg-subtle);
   --value-num-color: var(--chakra-colors-fg);
   --unit-color: rgba(255, 255, 255, 0.9);
