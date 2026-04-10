@@ -9,14 +9,57 @@
   text-align: center;
   justify-content: space-between;
   gap: 4px;
-  background-color: var(--card-bg);
+
+  position: relative;
+  overflow: hidden;
+
+  background: linear-gradient(
+    180deg,
+    var(--card-bg-top),
+    var(--card-bg-bottom)
+  );
   border: 1px solid var(--card-border);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* reflejo glass sutil */
+.reportsCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0.08) 20%,
+    rgba(255, 255, 255, 0) 45%
+  );
+}
+
+/* contenido por encima del pseudo-elemento */
+.reportsCard > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- LIGHT MODE: glass blanco --- */
+.total,
+.individual,
+.shared {
+  --card-bg-top: rgba(255, 255, 255, 0.92);
+  --card-bg-bottom: rgba(255, 255, 255, 0.84);
+  --card-border: rgba(255, 255, 255, 0.7);
 }
 
 /* --- Variants: Total --- */
 .total {
-  --card-bg: var(--chakra-colors-white);
-  --card-border: var(--chakra-colors-border);
   --label-color: var(--chakra-colors-fg);
   --description-color: var(--chakra-colors-fg-muted);
   --value-num-color: var(--chakra-colors-black);
@@ -24,16 +67,8 @@
   --value-color: var(--chakra-colors-fg);
 }
 
-:global(.dark) .total {
-  --card-bg: var(--chakra-colors-bg-panel);
-  --description-color: var(--chakra-colors-fg-subtle);
-  --value-num-color: var(--chakra-colors-fg);
-}
-
 /* --- Variants: Individual --- */
 .individual {
-  --card-bg: var(--chakra-colors-white);
-  --card-border: var(--chakra-colors-border);
   --label-color: var(--chakra-colors-blue-800);
   --description-color: var(--chakra-colors-blue-700);
   --value-num-color: var(--chakra-colors-blue-600);
@@ -41,20 +76,8 @@
   --value-color: var(--chakra-colors-blue-900);
 }
 
-:global(.dark) .individual {
-  --card-bg: var(--chakra-colors-blue-950);
-  --card-border: transparent;
-  --label-color: var(--chakra-colors-blue-300);
-  --description-color: var(--chakra-colors-blue-400);
-  --value-num-color: var(--chakra-colors-blue-300);
-  --unit-color: var(--chakra-colors-blue-400);
-  --value-color: var(--chakra-colors-blue-200);
-}
-
 /* --- Variants: Shared --- */
 .shared {
-  --card-bg: var(--chakra-colors-white);
-  --card-border: var(--chakra-colors-border);
   --label-color: var(--chakra-colors-purple-800);
   --description-color: var(--chakra-colors-purple-700);
   --value-num-color: var(--chakra-colors-purple-600);
@@ -62,9 +85,45 @@
   --value-color: var(--chakra-colors-purple-900);
 }
 
+/* --- DARK MODE: glass oscuro con tinte --- */
+:global(.dark) .reportsCard {
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 10px 28px rgba(0, 0, 0, 0.28);
+}
+
+/* Total = negro glass */
+:global(.dark) .total {
+  --card-bg-top: rgba(8, 12, 20, 0.9);
+  --card-bg-bottom: rgba(4, 8, 14, 0.82);
+  --card-border: rgba(255, 255, 255, 0.08);
+
+  --description-color: var(--chakra-colors-fg-subtle);
+  --value-num-color: var(--chakra-colors-fg);
+}
+
+/* Individual = azul glass */
+:global(.dark) .individual {
+  --card-bg-top: rgba(20, 56, 120, 0.72);
+  --card-bg-bottom: rgba(10, 26, 64, 0.64);
+  --card-border: rgba(100, 160, 255, 0.24);
+
+  --label-color: var(--chakra-colors-blue-300);
+  --description-color: var(--chakra-colors-blue-400);
+  --value-num-color: var(--chakra-colors-blue-300);
+  --unit-color: var(--chakra-colors-blue-400);
+  --value-color: var(--chakra-colors-blue-200);
+}
+
+/* Shared = morado glass */
 :global(.dark) .shared {
-  --card-bg: var(--chakra-colors-purple-950);
-  --card-border: transparent;
+  --card-bg-top: rgba(92, 34, 124, 0.72);
+  --card-bg-bottom: rgba(44, 14, 70, 0.64);
+  --card-border: rgba(210, 120, 255, 0.24);
+
   --label-color: var(--chakra-colors-purple-300);
   --description-color: var(--chakra-colors-purple-400);
   --value-num-color: var(--chakra-colors-purple-300);
