@@ -21,7 +21,14 @@ export interface ConfirmDialogProps extends Omit<Dialog.RootProps, 'children'> {
   hideCloseButton?: boolean;
   confirmButtonProps?: ButtonProps;
   cancelButtonProps?: ButtonProps;
+  contentProps?: React.ComponentProps<typeof Dialog.Content>;
+  bodyProps?: React.ComponentProps<typeof Dialog.Body>;
+  footerProps?: React.ComponentProps<typeof Dialog.Footer>;
+  headerProps?: React.ComponentProps<typeof Dialog.Header>;
+  backdropProps?: React.ComponentProps<typeof Dialog.Backdrop>;
+  positionerProps?: React.ComponentProps<typeof Dialog.Positioner>;
 }
+
 export const ConfirmDialog = React.forwardRef<
   HTMLDivElement,
   ConfirmDialogProps
@@ -40,6 +47,12 @@ export const ConfirmDialog = React.forwardRef<
     hideCloseButton = false,
     confirmButtonProps,
     cancelButtonProps,
+    contentProps,
+    bodyProps,
+    footerProps,
+    headerProps,
+    backdropProps,
+    positionerProps,
     ...rest
   } = props;
 
@@ -55,25 +68,98 @@ export const ConfirmDialog = React.forwardRef<
       {...rest}
     >
       <Portal disabled={!portalled} container={portalRef}>
-        <Dialog.Backdrop />
-        <Dialog.Positioner>
-          <Dialog.Content ref={ref} maxW="max-content" mx="4">
-            <Dialog.Header>
-              <Dialog.Title>{title}</Dialog.Title>
+        <Dialog.Backdrop
+          bg="rgba(15, 23, 42, 0.72)"
+          backdropFilter="blur(8px)"
+          {...backdropProps}
+        />
+
+        <Dialog.Positioner px="4" {...positionerProps}>
+          <Dialog.Content
+            ref={ref}
+            mx="4"
+            maxW="md"
+            w="full"
+            borderRadius="2xl"
+            bg="rgba(255, 255, 255, 0.88)"
+            border="1px solid"
+            borderColor="whiteAlpha.700"
+            backdropFilter="blur(18px) saturate(140%)"
+            boxShadow="0 20px 60px rgba(0, 0, 0, 0.18)"
+            _dark={{
+              bg: 'rgba(24, 24, 27, 0.9)',
+              borderColor: 'whiteAlpha.200',
+              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.42)',
+            }}
+            {...contentProps}
+          >
+            <Dialog.Header
+              px="5"
+              py="3"
+              display="flex"
+              alignItems="center"
+              justifyContent="space-between"
+              gap="3"
+              borderBottom="1px solid"
+              borderColor="blackAlpha.100"
+              _dark={{ borderColor: 'whiteAlpha.100' }}
+              {...headerProps}
+            >
+              <Dialog.Title fontSize="lg" fontWeight="700">
+                {title}
+              </Dialog.Title>
+
+              {!hideCloseButton && (
+                <Dialog.CloseTrigger asChild>
+                  <CloseButton
+                    size="sm"
+                    onClick={handleClose}
+                    disabled={isLoading}
+                    _hover={{ bg: 'blackAlpha.100' }}
+                    _active={{ bg: 'blackAlpha.200' }}
+                    _dark={{
+                      _hover: { bg: 'whiteAlpha.100' },
+                      _active: { bg: 'whiteAlpha.200' },
+                    }}
+                  />
+                </Dialog.CloseTrigger>
+              )}
             </Dialog.Header>
 
-            <Dialog.Body>
+            <Dialog.Body px="5" py="4" {...bodyProps}>
               {description && (
-                <Dialog.Description>{description}</Dialog.Description>
+                <Dialog.Description color="fg.muted">
+                  {description}
+                </Dialog.Description>
               )}
             </Dialog.Body>
 
-            <Dialog.Footer gap="3">
+            <Dialog.Footer
+              px="5"
+              pb="5"
+              pt="3"
+              gap="3"
+              borderColor="blackAlpha.100"
+              _dark={{ borderColor: 'whiteAlpha.100' }}
+              {...footerProps}
+            >
               <Dialog.ActionTrigger asChild>
                 <Button
                   variant="outline"
                   onClick={handleClose}
                   disabled={isLoading}
+                  borderColor="blackAlpha.200"
+                  _hover={{
+                    bg: 'blackAlpha.50',
+                    borderColor: 'blackAlpha.300',
+                  }}
+                  _dark={{
+                    borderColor: 'whiteAlpha.200',
+                    _hover: {
+                      bg: 'whiteAlpha.100',
+                      borderColor: 'whiteAlpha.300',
+                    },
+                  }}
                   {...cancelButtonProps}
                 >
                   {cancelText}
@@ -89,16 +175,6 @@ export const ConfirmDialog = React.forwardRef<
                 {confirmText}
               </Button>
             </Dialog.Footer>
-
-            {!hideCloseButton && (
-              <Dialog.CloseTrigger asChild>
-                <CloseButton
-                  size="sm"
-                  onClick={handleClose}
-                  disabled={isLoading}
-                />
-              </Dialog.CloseTrigger>
-            )}
           </Dialog.Content>
         </Dialog.Positioner>
       </Portal>

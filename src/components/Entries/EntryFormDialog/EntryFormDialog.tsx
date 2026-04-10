@@ -1,12 +1,33 @@
-import { Field, Input, NativeSelect, Textarea, VStack } from '@chakra-ui/react';
+import {
+  createListCollection,
+  Field,
+  Input,
+  Portal,
+  Select,
+  Textarea,
+  VStack,
+} from '@chakra-ui/react';
 import { FormDialog } from '@components/ui/form-dialog.tsx';
 import { useEntryForm } from '@hooks/useEntryForm/useEntryForm.ts';
 import { Controller } from 'react-hook-form';
 import { ENTRY_FORM_ID, entryFormRules } from './EntryFormDialog.helpers.ts';
 import {
+  entryDialogBackdropStyles,
+  entryDialogContentStyles,
+  entryFieldStyles,
+  entrySelectContentStyles,
+} from './EntryFormDialog.styles.ts';
+import {
   type EntryFormDialogProps,
   type EntryFormValues,
 } from './EntryFormDialog.types.ts';
+
+const entryTypeCollection = createListCollection({
+  items: [
+    { label: '1-on-1', value: 'INDIVIDUAL' },
+    { label: 'Group', value: 'SHARED' },
+  ],
+});
 
 export const EntryFormDialog = ({
   open,
@@ -33,13 +54,14 @@ export const EntryFormDialog = ({
       open={open}
       onOpenChange={onOpenChange}
       onCancel={() => onOpenChange({ open: false })}
-      title={mode === 'create' ? 'Create entry' : 'Edit entry'}
+      title={mode === 'create' ? 'CREAT ENTRY' : 'EDIT ENTRY'}
       submitText={mode === 'create' ? 'Create' : 'Save'}
       cancelText="Cancel"
       isLoading={isLoading}
       isSubmitDisabled={false}
       submitFormId={ENTRY_FORM_ID}
-      contentProps={{ maxW: 'lg', w: 'full' }}
+      backdropProps={entryDialogBackdropStyles}
+      contentProps={entryDialogContentStyles}
     >
       <form id={ENTRY_FORM_ID} onSubmit={submitForm}>
         <VStack gap="4" align="stretch">
@@ -50,23 +72,36 @@ export const EntryFormDialog = ({
               control={control}
               rules={entryFormRules.type}
               render={({ field }) => (
-                <NativeSelect.Root>
-                  <NativeSelect.Field
-                    name={field.name}
-                    value={field.value}
-                    onBlur={field.onBlur}
-                    ref={field.ref}
-                    onChange={(event) =>
-                      field.onChange(
-                        event.target.value as EntryFormValues['type'],
-                      )
-                    }
-                  >
-                    <option value="INDIVIDUAL">1-on-1</option>
-                    <option value="SHARED">Group</option>
-                  </NativeSelect.Field>
-                  <NativeSelect.Indicator />
-                </NativeSelect.Root>
+                <Select.Root
+                  collection={entryTypeCollection}
+                  value={field.value ? [field.value] : []}
+                  onValueChange={({ value }) =>
+                    field.onChange(value[0] as EntryFormValues['type'])
+                  }
+                >
+                  <Select.HiddenSelect name={field.name} />
+                  <Select.Control>
+                    <Select.Trigger {...entryFieldStyles}>
+                      <Select.ValueText placeholder="Select type" />
+                    </Select.Trigger>
+                    <Select.IndicatorGroup>
+                      <Select.Indicator />
+                    </Select.IndicatorGroup>
+                  </Select.Control>
+
+                  <Portal>
+                    <Select.Positioner>
+                      <Select.Content {...entrySelectContentStyles}>
+                        {entryTypeCollection.items.map((item) => (
+                          <Select.Item item={item} key={item.value}>
+                            {item.label}
+                            <Select.ItemIndicator />
+                          </Select.Item>
+                        ))}
+                      </Select.Content>
+                    </Select.Positioner>
+                  </Portal>
+                </Select.Root>
               )}
             />
             {errors.type && (
@@ -76,7 +111,11 @@ export const EntryFormDialog = ({
 
           <Field.Root invalid={!!errors.date}>
             <Field.Label>Date</Field.Label>
-            <Input type="date" {...register('date', entryFormRules.date)} />
+            <Input
+              type="date"
+              {...entryFieldStyles}
+              {...register('date', entryFormRules.date)}
+            />
             {errors.date && (
               <Field.ErrorText>{errors.date.message}</Field.ErrorText>
             )}
@@ -87,6 +126,7 @@ export const EntryFormDialog = ({
             <Input
               type="number"
               min={1}
+              {...entryFieldStyles}
               {...register('minutes', entryFormRules.minutes)}
             />
             {errors.minutes && (
@@ -96,7 +136,12 @@ export const EntryFormDialog = ({
 
           <Field.Root invalid={!!errors.note}>
             <Field.Label>Note</Field.Label>
-            <Textarea {...register('note', entryFormRules.note)} />
+            <Textarea
+              minH="120px"
+              resize="vertical"
+              {...entryFieldStyles}
+              {...register('note', entryFormRules.note)}
+            />
             {errors.note && (
               <Field.ErrorText>{errors.note.message}</Field.ErrorText>
             )}
