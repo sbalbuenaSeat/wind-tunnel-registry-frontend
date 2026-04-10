@@ -12,6 +12,12 @@ import { useEntryForm } from '@hooks/useEntryForm/useEntryForm.ts';
 import { Controller } from 'react-hook-form';
 import { ENTRY_FORM_ID, entryFormRules } from './EntryFormDialog.helpers.ts';
 import {
+  entryDialogBackdropStyles,
+  entryDialogContentStyles,
+  entryFieldStyles,
+  entrySelectContentStyles,
+} from './EntryFormDialog.styles.ts';
+import {
   type EntryFormDialogProps,
   type EntryFormValues,
 } from './EntryFormDialog.types.ts';
@@ -43,46 +49,19 @@ export const EntryFormDialog = ({
     onSubmit,
   });
 
-  const fieldStyles = {
-    borderRadius: 'xl',
-    bg: 'rgba(255,255,255,0.72)',
-    borderColor: 'blackAlpha.200',
-    backdropFilter: 'blur(10px)',
-    _hover: { bg: 'rgba(255,255,255,0.82)' },
-    _focusVisible: {
-      borderColor: 'blue.400',
-      boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.22)',
-    },
-    _dark: {
-      bg: 'rgba(255,255,255,0.08)',
-      borderColor: 'whiteAlpha.200',
-      _hover: { bg: 'rgba(255,255,255,0.12)' },
-      _focusVisible: {
-        borderColor: 'blue.300',
-        boxShadow: '0 0 0 3px rgba(96, 165, 250, 0.22)',
-      },
-    },
-  };
-
   return (
     <FormDialog
       open={open}
       onOpenChange={onOpenChange}
       onCancel={() => onOpenChange({ open: false })}
-      title={mode === 'create' ? 'Create entry' : 'Edit entry'}
+      title={mode === 'create' ? 'CREAT ENTRY' : 'EDIT ENTRY'}
       submitText={mode === 'create' ? 'Create' : 'Save'}
       cancelText="Cancel"
       isLoading={isLoading}
       isSubmitDisabled={false}
       submitFormId={ENTRY_FORM_ID}
-      backdropProps={{
-        bg: 'rgba(2, 6, 23, 0.78)',
-        backdropFilter: 'blur(10px)',
-      }}
-      contentProps={{
-        maxW: 'lg',
-        w: 'full',
-      }}
+      backdropProps={entryDialogBackdropStyles}
+      contentProps={entryDialogContentStyles}
     >
       <form id={ENTRY_FORM_ID} onSubmit={submitForm}>
         <VStack gap="4" align="stretch">
@@ -102,7 +81,7 @@ export const EntryFormDialog = ({
                 >
                   <Select.HiddenSelect name={field.name} />
                   <Select.Control>
-                    <Select.Trigger {...fieldStyles}>
+                    <Select.Trigger {...entryFieldStyles}>
                       <Select.ValueText placeholder="Select type" />
                     </Select.Trigger>
                     <Select.IndicatorGroup>
@@ -112,18 +91,7 @@ export const EntryFormDialog = ({
 
                   <Portal>
                     <Select.Positioner>
-                      <Select.Content
-                        borderRadius="xl"
-                        bg="rgba(255,255,255,0.9)"
-                        border="1px solid"
-                        borderColor="blackAlpha.100"
-                        backdropFilter="blur(18px)"
-                        boxShadow="lg"
-                        _dark={{
-                          bg: 'rgba(24,24,27,0.92)',
-                          borderColor: 'whiteAlpha.200',
-                        }}
-                      >
+                      <Select.Content {...entrySelectContentStyles}>
                         {entryTypeCollection.items.map((item) => (
                           <Select.Item item={item} key={item.value}>
                             {item.label}
@@ -145,7 +113,7 @@ export const EntryFormDialog = ({
             <Field.Label>Date</Field.Label>
             <Input
               type="date"
-              {...fieldStyles}
+              {...entryFieldStyles}
               {...register('date', entryFormRules.date)}
             />
             {errors.date && (
@@ -158,7 +126,7 @@ export const EntryFormDialog = ({
             <Input
               type="number"
               min={1}
-              {...fieldStyles}
+              {...entryFieldStyles}
               {...register('minutes', entryFormRules.minutes)}
             />
             {errors.minutes && (
@@ -171,7 +139,7 @@ export const EntryFormDialog = ({
             <Textarea
               minH="120px"
               resize="vertical"
-              {...fieldStyles}
+              {...entryFieldStyles}
               {...register('note', entryFormRules.note)}
             />
             {errors.note && (
